@@ -23,7 +23,7 @@ const Home = () => {
         <div className="flex flex-col ">
           <div className="w-50 h-5 bg-white "></div>
           <div className="text-blue-500 text-8xl font-medium mt-8 ml-8">{company?.name}</div>
-          <div className="text-white m-1 font-mono">{company?.info}</div>
+          <div className="text-white m-4 font-mono">{company?.info}</div>
           <div className="w-50 h-5 bg-white mt-auto"></div>
         </div>
       </div>
