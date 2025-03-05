@@ -19,12 +19,12 @@ const Home = () => {
       </div>
 
       <div className="absolute mt-100 z-10 flex md:mt-0 md:ml-120 ">
-        <div className="w-5 h-70 bg-white "></div>
+        <div className="w-7 h-70 bg-white "></div>
         <div className="flex flex-col ">
-          <div className="w-50 h-5 bg-white "></div>
-          <div className="text-blue-500 text-8xl font-medium mt-8 ml-8">{company?.name}</div>
-          <div className="text-white m-4 font-mono">{company?.info}</div>
-          <div className="w-50 h-5 bg-white mt-auto"></div>
+          <div className="w-50 h-7 bg-white "></div>
+          <div className="text-blue-500 text-8xl font-medium   mt-8 ml-8  font-sans">{company?.name}</div>
+          <div className="text-white m-3 ml-6 font-sans ">{company?.info}</div>
+          <div className="w-50 h-7 bg-white mt-auto"></div>
         </div>
       </div>
 

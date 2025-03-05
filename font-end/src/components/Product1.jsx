@@ -25,7 +25,7 @@ const Product1 = ({
 
     return (
         <div className="w-screen h-screen flex overflow-hidden flex-col mt-5">
-            <div className="flex flex-col w-full h-[calc(100vh-2rem)] md:flex-row md:justify-center md:items-center mt-30">
+            <div className="flex flex-col w-full h-[calc(100vh-2rem)] md:flex-row md:justify-center md:items-center mt-20">
             <div className=" md:w-40 md:h-40 bg-blue-700 z-10 relative -top-95 -left-10"></div>
                 <div className=" h-1/2 mt-10 mx-10 justify-center md:space-y-10 md:h-full md:w-2/3 md:m-20">
                     <div className="font-medium text-blue-600 text-5xl mb-4 md:mb-10">{productData?.name}</div>
