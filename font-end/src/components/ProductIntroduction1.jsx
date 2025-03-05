@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import Data from "../Data/index";
 
 
 const data = JSON.parse(localStorage.getItem("data"));
-const products = data.productsData;
+const products = data?.productsData;
 
 const ProductIntroduction1 = ({
     productId,
@@ -12,6 +13,7 @@ const ProductIntroduction1 = ({
     const [imageData, setImageData] = useState([]);
 
     useEffect(() => {
+        <Data></Data>
         const product = products.find((item) => item.id === productId);
         if (product) {
 

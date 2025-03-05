@@ -4,7 +4,7 @@ import { AiFillCheckCircle } from "react-icons/ai";
 
 
 const data = JSON.parse(localStorage.getItem("data"));
-const products = data.productsData;
+const products = data?.productsData;
 const Product2 = ({
     productId,
     imgID = [],
@@ -25,8 +25,8 @@ const Product2 = ({
         }
     }, [productId, imgID]);
     return (
-        <div className="md:flex-col min-w-screen min-h-screen">
-            <div className="flex flex-col-reverse w-screen h-screen justify-center items-cente md:max-w-screen md:max-h-screen md:flex-row md:w-screen">
+        <div className="md:flex-col max-w-screen max-h-screen md:max-w-screen md:max-h-screen">
+            <div className="flex flex-col-reverse w-screen h-screen justify-center md:max-w-screen md:max-h-[100vh-8rem] md:flex-row md:w-screen">
                 <div className="hidden md:block md:w-22 md:min-h-screen md:mr-auto">
                     <img src={imageData[1]} className="md:block md:max-w-[5vw]  md:min-w-[5vw]  md:h-[50vh]"></img>
                     <img src={imageData[2]} className="md:block md:max-w-[5vw]  md:min-w-[5vw]  md:h-[55vh]"></img>

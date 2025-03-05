@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 
 const data = JSON.parse(localStorage.getItem("data"));
-const products = data.productsData;
+const products = data?.productsData;
 const ProductIntroduction3 = ({
     productId,
     imgID = [],
