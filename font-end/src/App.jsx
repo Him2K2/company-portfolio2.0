@@ -1,7 +1,8 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import axios from "axios";
+import { RiLoader4Line } from "react-icons/ri";
+import PageWrapper from "./components/PageWrapper";
 
-const Data = lazy(() => import("./Data"));
 const Home = lazy(() => import("./components/Home"));
 const AbouteUs = lazy(() => import("./components/AbouteUs"));
 const ProductIntroduction1 = lazy(() => import("./components/ProductIntroduction1"));
@@ -40,24 +41,43 @@ const App = () => {
   }, []);
 
   if (!dataLoaded) {
-    return <div>Đang tải dữ liệu...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <RiLoader4Line className="text-6xl text-blue-700 animate-spin" />
+      </div>
+    );
   }
+
+  const homePage = <Home />;
+
+  const pages = [
+    <AbouteUs />,
+    <ProductIntroduction1 productId={7} imgID={[10, 11, 12, 13, 14]} />,
+    <Product1 productId={1} imgID={[1]} />,
+    <ProductIntroduction2 productId={3} imgID={[4, 5, 6, 3, 7]} />,
+    <Product4 productId={4} imgID={[15, 16, 17, 18]} />,
+    <Product2 productId={2} imgID={[19, 20, 21, 22, 23]} />,
+    <ProductIntroduction3 productId={7} imgID={[24]} />,
+    <UsService companyId={1} />,
+    <Employees />,
+    <ThankYou />,
+  ];
 
   return (
     <div className="flex flex-col">
-      <Suspense fallback={<div>Đang tải component...</div>}>
-        <Data />
-        <Home />
-        <AbouteUs />
-        <ProductIntroduction1 productId={7} imgID={[10, 11, 12, 13, 14]} />
-        <Product1 productId={1} imgID={[1]} />
-        <ProductIntroduction2 productId={3} imgID={[4, 5, 6, 3, 7]} />
-        <Product4 productId={4} imgID={[15, 16, 17, 18]} />
-        <Product2 productId={2} imgID={[19, 20, 21, 22, 23]} />
-        <ProductIntroduction3 productId={7} imgID={[24]} />
-        <UsService companyId={1} />
-        <Employees />
-        <ThankYou />
+      <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
+        <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
+      </div>}>
+
+        <PageWrapper>
+          {homePage}
+        </PageWrapper>
+
+        {pages.map((page, index) => (
+          <PageWrapper key={index} pageNumber={index + 1}>
+            {page}
+          </PageWrapper>
+        ))}
       </Suspense>
     </div>
   );

@@ -20,7 +20,7 @@ export default function UsService({ companyId }) {
     }
   }, [companyId]);
   return (
-    <div className="w-full min-h-screen flex flex-col bg-gray-100">
+    <div className="w-full min-h-screen flex flex-col bg-gray-100 select-none">
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="w-full h-[25vh] flex justify-center items-center text-5xl font-bold bg-gradient-to-r from-blue-500 to-blue-900 text-transparent bg-clip-text font-sans">
           DỊCH VỤ CỦA CHÚNG TÔI
@@ -43,9 +43,9 @@ export default function UsService({ companyId }) {
         </div>
       </div>
 
-      <div className="w-screen h-8 !important bg-blue-600 mt-auto relative z-10">
+      {/* <div className="w-screen h-8 !important bg-blue-600 mt-auto relative z-10">
         <button className="px-10 py-1 text-white bg-stone-800 absolute -top-3 left-10">Page No:18</button>
-      </div>
+      </div> */}
     </div>
   );
 

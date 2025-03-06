@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Data from "../Data/index";
-
 
 const data = JSON.parse(localStorage.getItem("data"));
 const products = data?.productsData;
@@ -13,7 +11,6 @@ const ProductIntroduction1 = ({
     const [imageData, setImageData] = useState([]);
 
     useEffect(() => {
-        <Data></Data>
         const product = products.find((item) => item.id === productId);
         if (product) {
 
@@ -27,7 +24,7 @@ const ProductIntroduction1 = ({
     }, [productId, imgID]);
     console.log(productData);
     return (
-        <div className="flex overflow-hidden flex-col max-w-screen max-h-screen">
+        <div className="flex overflow-hidden flex-col max-w-screen max-h-screen select-none">
             <div className="w-full  max-h-[calc(100vh-2rem)] md:flex md:w-full md:h-full">
                 <div className="hidden md:flex md:max-w-[58%] md:mx-4 md:mr-auto" >
                     <img src={imageData[0]} className="w-full h-full" ></img>
@@ -51,9 +48,7 @@ const ProductIntroduction1 = ({
                     </div>
                 </div>
             </div>
-            <div className="w-screen h-8 !important bg-blue-700 mt-auto relative z-10">
-                <button className="px-10 py-1 text-white bg-stone-800 absolute -top-3 left-10">Page No:11</button>
-            </div>
+          
         </div>
     )
 }

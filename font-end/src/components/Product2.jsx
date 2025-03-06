@@ -25,7 +25,7 @@ const Product2 = ({
         }
     }, [productId, imgID]);
     return (
-        <div className="md:flex-col max-w-screen max-h-screen md:max-w-screen md:max-h-screen">
+        <div className="md:flex-col max-w-screen max-h-screen md:max-w-screen md:max-h-screen select-none">
             <div className="flex flex-col-reverse w-screen h-screen justify-center md:max-w-screen md:max-h-[100vh-8rem] md:flex-row md:w-screen">
                 <div className="hidden md:block md:w-22 md:min-h-screen md:mr-auto">
                     <img src={imageData[1]} className="md:block md:max-w-[5vw]  md:min-w-[5vw]  md:h-[50vh]"></img>
@@ -43,17 +43,15 @@ const Product2 = ({
                         <div className="text-2xl">{productData?.description}</div>
                     </div>
                     <div className="hidden md:block md:mr-auto">
-                    <button className="px-8 py-2 bg-blue-500 text-white rounded-lg mx-10">FrontEnd</button>
-                    <button className="px-8 py-2 bg-blue-500 text-white rounded-lg mx-10">BackEnd</button>
+                    <button className="px-8 py-2 bg-blue-500 hover:bg-blue-950 text-white rounded-lg mx-10">FrontEnd</button>
+                    <button className="px-8 py-2 bg-blue-500 hover:bg-blue-950 text-white rounded-lg mx-10">BackEnd</button>
                     </div>
                     <div className="hidden md:block md:mr-auto md:m-10 md:font-medium ">{productData?.manufacture_year}</div>
                     <div className="hidden md:block md:bg-blue-600 text-2xl ml-auto md:w-[20vw] md:p-2 md: text-white md:font-bold md:pl-5">Dự Án Game</div>
 
                 </div>
             </div>
-            <div className="w-screen h-8 !important bg-blue-700 mt-auto relative z-10">
-                <button className="px-10 py-1 text-white bg-black opacity-50 absolute -top-3 left-10">Page No:13</button>
-            </div>
+        
         </div>
     )
 }

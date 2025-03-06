@@ -13,7 +13,7 @@ export default function Employees() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center min-h-screen bg-gray-100 select-none">
       <div className="flex justify-center items-center w-full h-[30vh] text-blue-600 text-5xl font-bold">
         Thành Viên Của Chúng Tôi
       </div>
@@ -44,9 +44,7 @@ export default function Employees() {
           </div>
         ))}
       </div>
-      <div className="w-screen h-8 !important bg-blue-600 mt-auto relative z-10">
-                <button className="px-10 py-1 text-white bg-stone-800 absolute -top-3 left-10">Page No:18</button>
-            </div>
+     
     </div>
   );
 }

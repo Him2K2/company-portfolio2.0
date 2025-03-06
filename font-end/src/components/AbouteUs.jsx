@@ -14,7 +14,7 @@ const AbouteUs = () => {
         }
     }, []);
     return (
-       <div  className='flex flex-col h-screen w-screen'>
+       <div  className='flex flex-col h-screen w-screen select-none'>
             <div className='flex flex-col h-[100vh-8rem] w-screen md:flex md:flex-row md:justify-center md:items-center'>
                 <div className=" flex justify-center md:m-5 md:items-center md:w-2/5">
     
@@ -26,29 +26,27 @@ const AbouteUs = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col justify-center items-center mt-5 md:m-5 md:flex md:justify-start md:items-start md:space-y-6 md:w-3/5">
-                    <h1 className="text-blue-600 text-4xl font-medium ">Về Chúng Tôi</h1>
-                    <div className="flex w-20 h-5 mt-1">
+                <div className="flex flex-col justify-center items-center mt-5 md:m-5 md:mt-30 md:flex md:justify-start md:items-start md:space-y-6 md:w-3/5">
+                    <h1 className="text-blue-500 text-5xl select-none font-bold">Về Chúng Tôi</h1>
+                    <div className="flex w-20 h-5 mt-1 select-none">
                         <div className="bg-blue-950 w-5 h-5 ml-1" ></div>
                         <div className="bg-blue-500 w-5 h-5 ml-1" ></div>
                         <div className="bg-blue-200 w-5 h-5 ml-1" ></div>
                     </div>
-                    <div className="m-5 ml-0">
+                    <div className="m-5 ml-0 select-none">
                         {company?.info}
                     </div>
                     <div className="grid grid-cols-[auto_1fr] grid-rows-2 gap-4 w-full max-w-lg m-1">
-                        <div className="bg-blue-500 text-white flex items-center justify-center w-12 h-12 text-xl ">1</div>
-                        <div className="bg-gray-100 p-4 rounded-md ">{company?.description[0]}</div>
-                        <div className="bg-blue-500 text-white flex items-center justify-center w-12 h-12 text-xl ">2</div>
-                        <div className="bg-gray-100 p-4 rounded-md">{company?.description[1]}</div>
+                        <div className="bg-blue-500 text-white flex items-center justify-center w-12 h-12 select-none text-xl ">1</div>
+                        <div className="rounded-md select-none ">{company?.description[0]}</div>
+                        <div className="bg-blue-800 text-white flex items-center select-none justify-center w-12 h-12 text-xl ">2</div>
+                        <div className="rounded-md select-none">{company?.description[1]}</div>
                     </div>
                     
     
                 </div>
             </div>
-            <div className="w-screen h-8 !important bg-blue-600 mt-auto relative z-10">
-                <button className="px-10 py-1 text-white bg-stone-800 absolute -top-3 left-10">Page No:2</button>
-            </div>
+         
        </div>
     )
 }

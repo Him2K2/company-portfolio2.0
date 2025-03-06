@@ -24,7 +24,7 @@ const ProductIntroduction3 = ({
     console.log(productData);
 
     return (
-        <div className="w-[100vw] h-[100vh]">
+        <div className="w-[100vw] h-[100vh] select-none">
             <div className=" md:flex">
                 <div className="max-w-[100vw] max-h-[100vh] flex flex-col md:w-[80vw]">
                     <div className="w-full bg-blue-700 min-h-[30vh] "></div>
@@ -40,9 +40,9 @@ const ProductIntroduction3 = ({
                     <img src={imageData[0]} className=" md:min-w-[25vw] md:h-[80vh]"></img>
                 </div>
             </div>
-            <div className="w-screen h-8 !important bg-blue-600 mt-auto relative z-10">
+            {/* <div className="w-screen h-8 !important bg-blue-600 mt-auto relative z-10">
                 <button className="px-10 py-1 text-white bg-stone-800 absolute -top-3 left-10">Page No:18</button>
-            </div>
+            </div> */}
 
         </div>
     )

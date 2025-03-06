@@ -24,7 +24,7 @@ const ProductIntroduction2 = ({
     console.log(productData);
     
     return (
-        <div className="flex overflow-hidden flex-col max-w-screen max-h-screen">
+        <div className="flex overflow-hidden flex-col max-w-screen max-h-screen select-none">
             <div className="w-full  max-h-[calc(100vh-2rem)] md:flex md:w-full md:h-full">
                 <div className="grid grid-cols-2 grid-rows-3 gap-4 w-full min-h-screen md:max-w-[40%]  md:h-full md:min-h-screen">
                     <div className="relative bg-blue-500 text-white flex items-center justify-center md:h-full md:w-full p-4">
@@ -48,9 +48,9 @@ const ProductIntroduction2 = ({
                     <img src={imageData[1]} className="w-full h-full" ></img>
                 </div>
             </div>
-            <div className="w-screen h-8 !important bg-blue-700 mt-auto relative z-10">
+            {/* <div className="w-screen h-8 !important bg-blue-700 mt-auto relative z-10">
                 <button className="px-10 py-1 text-white bg-stone-800 absolute -top-3 left-10">Page No:11</button>
-            </div>
+            </div> */}
         </div>
     )
 }

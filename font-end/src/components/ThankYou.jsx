@@ -16,7 +16,7 @@ export default function ThankYou() {
     }, []);
 
     return (
-        <div className="w-screen h-screen flex flex-col items-center">
+        <div className="w-screen h-screen flex flex-col items-center select-none">
             <div className="w-screen h-[22vh]"></div>
             <div className="flex flex-col justify-center items-center h-[40vh] overflow-hidden">
                 <div className="flex space-x-4 mb-4">
@@ -33,12 +33,16 @@ export default function ThankYou() {
                 </div>
             </div>
             <div className="w-full max-w-5xl flex flex-col md:flex-row justify-between items-center mt-20 px-10 space-y-4 md:space-y-0">
-                <div className="flex items-center text-lg"><MdOutlineMailOutline className="mr-2 text-red-500" /> {company?.email}</div>
-                <div className="flex items-center text-lg"><IoCallOutline className="mr-2 text-green-500" /> {company?.phone}</div>
-                <div className="flex items-center text-lg"><FaLink className="mr-2 text-blue-500" /> {company?.website}</div>
-            </div>
-            <div className="w-screen h-8 !important bg-blue-600 mt-auto relative z-10">
-                <button className="px-10 py-1 text-white bg-stone-800 absolute -top-3 left-10">Page No:18</button>
+                <a href={`mailto:${company?.email}`} target="_blank" className="flex items-center text-lg">
+                    <MdOutlineMailOutline className="mr-2 text-red-500" /> {company?.email}
+                </a>
+                <a href={`tel:${company?.phone}`} className="flex items-center text-lg">
+                    <IoCallOutline className="mr-2 text-green-500" /> {company?.phone}
+                </a>
+                <a href={company?.website} target="_blank" rel="noopener noreferrer" className="flex items-center text-lg">
+                    <FaLink className="mr-2 text-blue-500" /> {company?.website}
+                </a>
+
             </div>
         </div>
     );
