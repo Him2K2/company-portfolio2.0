@@ -2,7 +2,7 @@ import React from "react";
 
 const PageWrapper = ({ pageNumber, children }) => {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full max-w-screen">
       <div className="p-4">{children}</div>
       {pageNumber > 0 && (
           <div className="w-screen h-8 !important bg-blue-600 mt-auto relative z-10">
