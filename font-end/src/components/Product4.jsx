@@ -24,7 +24,7 @@ const Product4 = ({
     }
   }, [productId, imgID]);
   return (
-    <div className='flex flex-col max-w-screen max-h-screen justify-center items-center select-none'>
+    <div className='flex flex-col  min-h-screen justify-center items-center select-none  md:overflow-hidden'>
       <div className='w-screen max-h-[calc(100vh-90vh)] md:min-h-20'></div>
       <div className='w-screen max-h-[calc(100vh-65vh)] flex flex-col items-center justify-center'>
         <img src={imageData[0]} className="w-30 md:w-12"></img>
@@ -39,8 +39,8 @@ const Product4 = ({
           <div className="ml-10 font-bold">{productData?.manufacture_year}</div>
         </div>
       </div>
-      <div className='relative w-screen max-h-[calc(100vh-43vh)] md:-z-10 md:overflow-hidden'>
-        <img src={imageData[1]} className="max-w-full max-h-full"></img>
+      <div className='mt-10 md:relative md:  w-screen md:max-h-[calc(100vh-43vh)] md:-z-10 md:overflow-hidden'>
+        <img src={imageData[1]} className="max-w-full max-h-full md:-z-30"></img>
       </div>
      
     </div>

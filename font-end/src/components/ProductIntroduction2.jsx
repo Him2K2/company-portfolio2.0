@@ -44,7 +44,7 @@ const ProductIntroduction2 = ({
                         <img src={imageData[2]} className="absolute w-full h-full object-cover"></img>
                     </div>
                 </div>
-                <div className="hidden md:flex md:min-w-[60%] md:mx-4" >
+                <div className="hidden md:flex md:min-w-[60%] md:ml-4" >
                     <img src={imageData[1]} className="w-full h-full" ></img>
                 </div>
             </div>

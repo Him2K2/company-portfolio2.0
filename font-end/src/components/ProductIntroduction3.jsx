@@ -24,7 +24,7 @@ const ProductIntroduction3 = ({
     console.log(productData);
 
     return (
-        <div className="w-[100vw] h-[100vh] select-none">
+        <div className=" h-[100vh] select-none ">
             <div className=" md:flex">
                 <div className="max-w-[100vw] max-h-[100vh] flex flex-col md:w-[80vw]">
                     <div className="w-full bg-blue-700 min-h-[30vh] "></div>

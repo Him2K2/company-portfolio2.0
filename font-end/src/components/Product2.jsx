@@ -25,8 +25,8 @@ const Product2 = ({
         }
     }, [productId, imgID]);
     return (
-        <div className="md:flex-col max-w-screen max-h-screen md:max-w-screen md:max-h-screen select-none">
-            <div className="flex flex-col-reverse w-screen h-screen justify-center md:max-w-screen md:max-h-[100vh-8rem] md:flex-row md:w-screen">
+        <div  className="min-h-screen md:h-screen select-none">
+            <div className="flex flex-col-reverse w-full h-full justify-center md:flex-row md:h-[calc(100vh-4rem)]">
                 <div className="hidden md:block md:w-22 md:min-h-screen md:mr-auto">
                     <img src={imageData[1]} className="md:block md:max-w-[5vw]  md:min-w-[5vw]  md:h-[50vh]"></img>
                     <img src={imageData[2]} className="md:block md:max-w-[5vw]  md:min-w-[5vw]  md:h-[55vh]"></img>

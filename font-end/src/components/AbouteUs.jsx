@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const AbouteUs = () => {
     const [company, setCompany] = useState(null);
-    
+
     useEffect(() => {
         const storedData = localStorage.getItem("data");
         if (storedData) {
@@ -16,25 +16,23 @@ const AbouteUs = () => {
 
 
     return (
-        <div className='flex flex-col w-full h-full'> 
-            <div className='flex flex-col w-full p-4 md:flex-row md:justify-center md:items-center md:h-full'>
-                <div className="flex justify-center md:m-5 md:items-center md:w-2/5">
-                    <div className="hidden md:block md:relative md:-top-30 md:left-30 md:bg-blue-600 md:w-50 md:h-50"></div>
-                    <div className="relative w-full max-w-xs md:w-70 md:h-80">
-                        <img 
-                            src={company?.abouteImg} 
-                            className="w-full h-auto border-2 border-stone-500"
+        <div className='flex flex-col w-full h-full select-none'>
+            <div className='flex flex-col w-full p-4 md:mt-15 md:flex-row md:justify-center md:items-center md:h-full'>
+                <div className="flex relative justify-center md:justify-start md:items-center md:w-2/5">
+                    <div className="hidden md:absolute md:block  md:-top-30 md:left-0 md:bg-blue-600 md:w-50 md:h-50 lg:w-80 lg:h-80"></div>
+                    <div className="relative bottom-10 w-full max-w-xs md:ml-20 md:w-full md:h-100">
+                        <img
+                            src={company?.abouteImg}
+                            className="w-full h-full"
                         />
                         <div className="absolute right-5 -bottom-5 bg-gradient-to-r from-blue-800 to-sky-600 flex items-center justify-center z-10 w-20 h-20">
-                            <img 
-                                src={company?.logo_img_url} 
-                                className="invert mix-blend-screen w-20 h-20" 
+                            <img
+                                src={company?.logo_img_url}
+                                className="invert mix-blend-screen w-20 h-20"
                             />
                         </div>
                     </div>
                 </div>
-
-              
                 <div className="flex flex-col items-center mt-5 md:m-5 md:items-start md:space-y-6 md:w-3/5">
                     <h1 className="text-blue-500 text-4xl md:text-5xl font-bold">Về Chúng Tôi</h1>
                     <div className="flex w-20 h-5 mt-1">
@@ -53,7 +51,7 @@ const AbouteUs = () => {
                     </div>
                 </div>
             </div>
-       </div>
+        </div>
     )
 }
 

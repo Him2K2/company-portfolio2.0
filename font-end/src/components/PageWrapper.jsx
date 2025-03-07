@@ -3,7 +3,7 @@ import React from "react";
 const PageWrapper = ({ pageNumber, children }) => {
   return (
     <div className="relative w-full min-h-screen flex flex-col">
-      <div className="p-4 flex-grow"> 
+      <div className="pl-4 pr-4 pt-4 flex-grow"> 
         {children}
       </div>
       

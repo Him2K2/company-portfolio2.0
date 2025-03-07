@@ -32,16 +32,15 @@ const ProductIntroduction1 = ({
                     <img src={imageData[0]} className="w-full h-full object-cover" />
                 </div>
                 <div className="grid grid-cols-2 grid-rows-[auto_auto_1fr] gap-4 w-full h-full md:max-w-[40%]">
-
                     <div className="relative aspect-square">
                         <img src={imageData[1]} className="absolute w-full h-full object-cover" />
                     </div>
                     <div className="relative aspect-square">
                         <img src={imageData[2]} className="absolute w-full h-full object-cover" />
                     </div>
-                    <div className="bg-blue-800 text-white text-3xl flex flex-col items-center justify-center p-4 col-span-2">
+                    <div className="bg-blue-800 text-white text-3xl h-120 flex flex-col items-center justify-center p-4 col-span-2 md:h-54">
                         <h1>Phần I</h1>
-                        <p className="font-medium text-4xl">Dự Án WEB/APP</p>
+                        <p className="font-bold text-4xl">Dự Án WEB/APP</p>
                     </div>
                     <div className="relative aspect-square">
                         <img src={imageData[3]} className="absolute w-full h-full object-cover" />
