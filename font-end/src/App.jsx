@@ -51,34 +51,34 @@ const App = () => {
   const homePage = <Home />;
 
   const pages = [
-    // <AbouteUs />,
-    // <ProductIntroduction1 productId={7} imgID={[10, 11, 12, 13, 14]} />,
-    // <Product1 productId={1} imgID={[1]} />,
-    // <ProductIntroduction2 productId={3} imgID={[4, 5, 6, 3, 7]} />,
-    // <Product4 productId={4} imgID={[15, 16, 17, 18]} />,
-    // <Product2 productId={2} imgID={[19, 20, 21, 22, 23]} />,
-    // <ProductIntroduction3 productId={7} imgID={[24]} />,
-    // <UsService companyId={1} />,
-    // <Employees />,
-    // <ThankYou />,
+    <AbouteUs />,
+    <ProductIntroduction1 productId={7} imgID={[10, 11, 12, 13, 14]} />,
+    <Product1 productId={1} imgID={[1]} />,
+    <ProductIntroduction2 productId={3} imgID={[4, 5, 6, 3, 7]} />,
+    <Product4 productId={4} imgID={[15, 16, 17, 18]} />,
+    <Product2 productId={2} imgID={[19, 20, 21, 22, 23]} />,
+    <ProductIntroduction3 productId={7} imgID={[24]} />,
+    <UsService companyId={1} />,
+    <Employees />,
+    <ThankYou />,
   ];
 
   return (
-    <div className="flex flex-col max-w-screen max-h-screen overflow-hidden">
+    <div className="flex flex-col max-w-screen">
       <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
         <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
       </div>}>
 
-        <PageWrapper>
-          {homePage}
-        </PageWrapper>
+      <PageWrapper>
+      {homePage}
+    </PageWrapper>
 
-        {pages.map((page, index) => (
-          <PageWrapper key={index} pageNumber={index + 1}>
-            {page}
-          </PageWrapper>
-        ))}
-      </Suspense>
+    {pages.map((page, index) => (
+      <PageWrapper key={index} pageNumber={index + 1}>
+        {page}
+      </PageWrapper>
+    ))}
+  </Suspense>
     </div>
   );
 };
