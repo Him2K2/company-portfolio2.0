@@ -43,8 +43,8 @@ const Product2 = ({
                         <div className="text-2xl">{productData?.description}</div>
                     </div>
                     <div className="hidden md:block md:mr-auto">
-                    <button className="px-8 py-2 bg-blue-500 hover:bg-blue-950 text-white rounded-lg mx-10">FrontEnd</button>
-                    <button className="px-8 py-2 bg-blue-500 hover:bg-blue-950 text-white rounded-lg mx-10">BackEnd</button>
+                    <button className="px-8 py-2 bg-blue-500 hover:bg-blue-950 text-white rounded-lg mx-10">Frontend</button>
+                    <button className="px-8 py-2 bg-blue-500 hover:bg-blue-950 text-white rounded-lg mx-10">Backend</button>
                     </div>
                     <div className="hidden md:block md:mr-auto md:m-10 md:font-medium ">{productData?.manufacture_year}</div>
                     <div className="hidden md:block md:bg-blue-600 text-2xl ml-auto md:w-[20vw] md:p-2 md: text-white md:font-bold md:pl-5">Dự Án Game</div>

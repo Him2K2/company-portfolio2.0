@@ -35,8 +35,8 @@ const Product4 = ({
         </div>
         <div className="mt-5">{productData?.description}</div>
         <div className="flex m-5 items-center">
-          <button className="bg-blue-600 hover:bg-blue-950 selection:cursor-pointer select-all px-7 py-1 text-white text-2xl rounded-2xl mr-10 md:text-xl">FrontEnd</button>
-          <div className="ml-10 font-bold">{productData?.manufacture_year}</div>
+          <button className="bg-blue-600 hover:bg-blue-950 selection:cursor-pointer select-all px-7 py-1 text-white text-2xl rounded-2xl mr-10 md:text-xl">Frontend</button>
+          <div className="ml-10 font-medium">{productData?.manufacture_year}</div>
         </div>
       </div>
       <div className='mt-10 md:relative md:  w-screen md:max-h-[calc(100vh-43vh)] md:-z-10 md:overflow-hidden'>

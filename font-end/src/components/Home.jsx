@@ -23,7 +23,7 @@ const Home = () => {
         <div className="flex flex-col  ">
           <div className="w-50 h-7 bg-white "></div>
           <div className="text-blue-500 text-6xl font-bold mt-20 ml-8  font-montserrat">{company?.name}</div>
-          <div className="text-white m-3 ml-6 font-sans text-xs flex-wrap">{company?.info}</div>
+          <div className="text-white m-3 ml-6 font-sans text-xs flex-wrap">{company?.slogan}</div>
           <div className="w-50 h-7 bg-white mt-auto"></div>
         </div>
       </div>

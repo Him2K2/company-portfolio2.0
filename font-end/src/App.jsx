@@ -2,6 +2,7 @@ import React, { useEffect, useState, lazy, Suspense } from "react";
 import axios from "axios";
 import { RiLoader4Line } from "react-icons/ri";
 import PageWrapper from "./components/PageWrapper";
+import Header from "./components/Header";
 
 const Home = lazy(() => import("./components/Home"));
 const AbouteUs = lazy(() => import("./components/AbouteUs"));
@@ -64,17 +65,17 @@ const App = () => {
   ];
 
   return (
-    <div className="flex flex-col max-w-screen">
+    <div className="flex flex-col max-w-screen items-center">
       <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
         <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
       </div>}>
-
+      {/* <Header></Header> */}
       <PageWrapper>
       {homePage}
     </PageWrapper>
 
     {pages.map((page, index) => (
-      <PageWrapper key={index} pageNumber={index + 1}>
+      <PageWrapper key={index} pageNumber={index + 2}>
         {page}
       </PageWrapper>
     ))}

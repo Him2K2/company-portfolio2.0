@@ -34,7 +34,7 @@ const AbouteUs = () => {
                     </div>
                 </div>
                 <div className="flex flex-col items-center mt-5 md:m-5 md:items-start md:space-y-6 md:w-3/5">
-                    <h1 className="text-blue-500 text-4xl md:text-5xl font-bold">Về Chúng Tôi</h1>
+                    <h1 className="text-blue-500 text-4xl md:text-5xl font-bold">VỀ CHÚNG TÔI</h1>
                     <div className="flex w-20 h-5 mt-1">
                         <div className="bg-blue-950 w-5 h-5 ml-1" ></div>
                         <div className="bg-blue-500 w-5 h-5 ml-1" ></div>
