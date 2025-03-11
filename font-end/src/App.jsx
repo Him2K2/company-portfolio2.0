@@ -55,9 +55,13 @@ const App = () => {
     <AbouteUs />,
     <ProductIntroduction1 productId={7} imgID={[10, 11, 12, 13, 14]} />,
     <Product1 productId={1} imgID={[1]} />,
+    <Product1 productId={13} imgID={[25]}/>,
+    <Product4 productId={10} imgID={[30,31,37,38]}></Product4>,
     <ProductIntroduction2 productId={3} imgID={[4, 5, 6, 3, 7]} />,
     <Product4 productId={4} imgID={[15, 16, 17, 18]} />,
-    <Product2 productId={2} imgID={[19, 20, 21, 22, 23]} />,
+    <Product2 productId={2} imgID={[19, 22]} />,
+    <Product2 productId={11} imgID={[27,26]}/>,
+    <Product2 productId={12} imgID={[29]}/>,
     <ProductIntroduction3 productId={7} imgID={[24]} />,
     <UsService companyId={1} />,
     <Employees />,
@@ -75,17 +79,16 @@ const App = () => {
         </PageWrapper>
 
         {pages.map((page, index) => {
-          // Gán ID cho các section quan trọng cần scroll tới
           let sectionId = null;
           if (index === 2) sectionId = "part1"; // PHẦN I - ProductIntroduction1
-          if (index === 3) sectionId = "part2"; // PHẦN II - ProductIntroduction2 
-          if (index === 6) sectionId = "part3"; // PHẦN III - ProductIntroduction3
+          if (index === 5) sectionId = "part2"; // PHẦN II - ProductIntroduction2 
+          if (index === 10) sectionId = "part3"; // PHẦN III - ProductIntroduction3
 
           return (
-            <PageWrapper 
-              key={index} 
+            <PageWrapper
+              key={index}
               pageNumber={index + 2}
-              id={sectionId} // Thêm prop id ở đây
+              id={sectionId}
             >
               {page}
             </PageWrapper>
