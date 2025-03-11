@@ -24,7 +24,7 @@ const ProductIntroduction1 = ({
     }, [productId, imgID]);
     console.log(productData);
     return (
-        <div className="flex overflow-hidden flex-col max-w-screen max-h-screen select-none">
+        <div id="part1" className="flex overflow-hidden flex-col max-w-screen max-h-screen select-none">
             <div className="w-full  max-h-[calc(100vh-2rem)] md:flex md:w-full md:h-full">
                 <div className="hidden md:flex md:max-w-[58%] md:mx-4 md:mr-auto" >
                     <img src={imageData[0]} className="w-full h-full" ></img>

@@ -69,17 +69,29 @@ const App = () => {
       <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
         <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
       </div>}>
-      {/* <Header></Header> */}
-      <PageWrapper>
-      {homePage}
-    </PageWrapper>
+        <Header></Header>
+        <PageWrapper id="home">
+          {homePage}
+        </PageWrapper>
 
-    {pages.map((page, index) => (
-      <PageWrapper key={index} pageNumber={index + 2}>
-        {page}
-      </PageWrapper>
-    ))}
-  </Suspense>
+        {pages.map((page, index) => {
+          // Gán ID cho các section quan trọng cần scroll tới
+          let sectionId = null;
+          if (index === 2) sectionId = "part1"; // PHẦN I - ProductIntroduction1
+          if (index === 3) sectionId = "part2"; // PHẦN II - ProductIntroduction2 
+          if (index === 6) sectionId = "part3"; // PHẦN III - ProductIntroduction3
+
+          return (
+            <PageWrapper 
+              key={index} 
+              pageNumber={index + 2}
+              id={sectionId} // Thêm prop id ở đây
+            >
+              {page}
+            </PageWrapper>
+          );
+        })}
+      </Suspense>
     </div>
   );
 };

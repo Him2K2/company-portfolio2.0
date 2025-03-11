@@ -24,7 +24,7 @@ const ProductIntroduction2 = ({
     console.log(productData);
     
     return (
-        <div className="flex overflow-hidden flex-col max-w-screen max-h-screen select-none">
+        <div id="part2" className="flex overflow-hidden flex-col max-w-screen max-h-screen select-none">
             <div className="w-full  max-h-[calc(100vh-2rem)] md:flex md:w-full md:h-full">
                 <div className="grid grid-cols-2 grid-rows-3 gap-4 w-full min-h-screen md:max-w-[40%]  md:h-full md:min-h-screen">
                     <div className="relative bg-blue-500 text-white flex items-center justify-center md:h-full md:w-full p-4">

@@ -1,10 +1,8 @@
 import React from "react";
-import Header from "./Header";
 
-const PageWrapper = ({ pageNumber, children }) => {
+const PageWrapper = ({ pageNumber, children,id  }) => {
   return (
-    <div className="relative w-full min-h-screen flex flex-col lg:max-w-[80vw]">
-      <Header></Header>
+    <div  id={id}  className="relative w-full min-h-screen flex flex-col lg:max-w-[80vw]">
       <div className="pl-4 pr-4 pt-4 flex-grow"> 
         {children}
       </div>
