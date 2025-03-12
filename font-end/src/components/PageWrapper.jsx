@@ -2,8 +2,8 @@ import React from "react";
 
 const PageWrapper = ({ pageNumber, children,id  }) => {
   return (
-    <div  id={id}  className="relative w-full min-h-screen flex flex-col lg:max-w-[80vw]">
-      <div className="pl-4 pr-4 pt-4 flex-grow"> 
+    <div  id={id}  className="relative w-full min-h-screen bg-white flex flex-col lg:max-w-[80vw] print:min-h-[277mm] print:block print:py-5">
+      <div className="flex-grow"> 
         {children}
       </div>
       

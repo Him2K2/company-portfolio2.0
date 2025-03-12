@@ -39,8 +39,8 @@ const Product4 = ({
           <div className="ml-10 font-medium">{productData?.manufacture_year}</div>
         </div>
       </div>
-      <div className='mt-10 md:relative md:  w-screen md:max-h-[calc(100vh-43vh)] md:-z-10 md:overflow-hidden'>
-        <img src={imageData[1]} className="max-w-full max-h-full md:-z-30"></img>
+      <div className='mt-10 md:relative md:  w-screen md:max-h-[calc(100vh-43vh)] md:z-10 md:overflow-hidden'>
+        <img src={imageData[1]} className="max-w-full max-h-full md:z-30"></img>
       </div>
      
     </div>

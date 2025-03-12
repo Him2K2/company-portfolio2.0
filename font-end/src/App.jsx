@@ -69,12 +69,12 @@ const App = () => {
   ];
 
   return (
-    <div className="flex flex-col max-w-screen items-center">
+    <div className="flex flex-col max-w-screen items-center print:block print:w-[210mm] print:mx-auto">
       <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
         <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
       </div>}>
-        <Header></Header>
-        <PageWrapper id="home">
+        <Header className="no-print"></Header>
+        <PageWrapper id="home" className="page-wrapper">
           {homePage}
         </PageWrapper>
 
@@ -89,6 +89,7 @@ const App = () => {
               key={index}
               pageNumber={index + 2}
               id={sectionId}
+              className="page-wrapper"
             >
               {page}
             </PageWrapper>

@@ -34,3 +34,40 @@ html, body {
 .mt-auto {
   margin-top: auto;
 }
+
+
+@media print {
+  @page {
+    size: A4;
+    margin: 15mm 10mm; /* Căn lề chuẩn cho máy in */
+  }
+
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    background: white !important;
+  }
+
+  .page-wrapper {
+    page-break-after: always !important;
+    min-height: 277mm !important; /* Chiều cao khổ A4 trừ margin */
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  /* Tắt mọi hiệu ứng và layout đặc biệt */
+  * {
+    overflow: visible !important;
+    float: none !important;
+    /* position: static !important; */
+    /* display: block !important; */
+  }
+
+  /* Ẩn header và footer */
+  header, .print-hidden {
+    display: none !important;
+  }
+
+ 
+}

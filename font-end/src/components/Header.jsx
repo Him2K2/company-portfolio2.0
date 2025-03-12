@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { TiThMenuOutline } from "react-icons/ti";
+import { RiLogoutBoxRFill } from "react-icons/ri";
 
 function Header() {
   const [company, setCompany] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const exportToPDF = () => {
+    window.print(); // Kích hoạt chức năng in của trình duyệt
+  };
   // Hàm scroll tổng quát dùng ID
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -27,7 +31,7 @@ function Header() {
   }, []);
 
   return (
-    <div className="w-screen flex h-15 bg-blue-700 p-5 text-white fixed justify-between items-center z-50 mb-auto md:h-15 lg:w-[80vw] select-none">
+    <div className="w-screen flex h-15 bg-blue-700 p-5 text-white fixed justify-between items-center z-50 mb-auto md:h-15 lg:w-[80vw] select-none print-hidden">
       <a 
         onClick={() => scrollToSection("home")} 
         className="bg-blue-700 cursor-pointer hover:bg-blue-600 flex items-center justify-center z-10 w-20 h-15"
@@ -59,7 +63,7 @@ function Header() {
         <li className="p-3 hover:bg-blue-500 cursor-pointer transition-all" onClick={() => handleMobileClick("part3")}>PHẦN III</li>
       </div>
 
-      <div className="p-4">ToPDF</div>
+      <div className="p-4 cursor-pointer print-hidden flex items-center" onClick={exportToPDF}>ToPDF <RiLogoutBoxRFill className="text-white text-3xl" /> </div>
     </div>
   );
 }
