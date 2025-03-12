@@ -69,7 +69,7 @@ const App = () => {
   ];
 
   return (
-    <div className="flex flex-col max-w-screen items-center print:block print:w-[210mm] print:mx-auto">
+    <div className="flex flex-col max-w-screen items-center print:block print:w-[210mm] print:mx-auto bg-black">
       <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
         <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
       </div>}>

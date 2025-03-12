@@ -17,7 +17,7 @@ const AbouteUs = () => {
 
     return (
         <div className='flex flex-col w-full h-full select-none'>
-            <div className='flex flex-col w-full p-4 md:mt-15 md:flex-row md:justify-center md:items-center md:h-full'>
+            <div className='flex flex-col w-full md:mt-15 md:flex-row md:justify-center md:items-center md:h-full'>
                 <div className="flex relative justify-center md:justify-start md:items-center md:w-2/5">
                     <div className="hidden md:absolute md:block  md:-top-30 md:left-0 md:bg-blue-600 md:w-50 md:h-50 lg:w-80 lg:h-80"></div>
                     <div className="relative bottom-10 w-full max-w-xs md:ml-20 md:w-full md:h-100">

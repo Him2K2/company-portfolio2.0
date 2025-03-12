@@ -25,15 +25,15 @@ export default function UsService({ companyId }) {
         <div className="w-full h-[25vh] flex justify-center items-center text-5xl font-bold bg-gradient-to-r from-blue-500 to-blue-900 text-transparent bg-clip-text font-sans">
           DỊCH VỤ CỦA CHÚNG TÔI
         </div>
-        <div className="flex justify-center items-center flex-wrap gap-10 px-4 py-8">
+        <div className="flex justify-center items-center flex-wrap py-8">
           {services.slice(0, 5).map((item, index) => {
             const icons = [faToolbox, faPalette, faCode, faMobileAlt, faGamepad];
             return (
               <div
                 key={item.id}
-                className={`flex flex-col items-center ${index % 2 === 0 ? 'mt-10' : 'mb-5'}`}
+                className={`flex flex-col items-center p-4 w-60 h-60 ${index % 2 === 0 ? 'flex-col-reverse 2xl:border-black 2xl:border-b-2 2xl:border-x-2  2xl:rounded-b-[7rem] 2xl:pb-5 2xl:mt-16 ' : '2xl:border-black 2xl:border-t-2  2xl:rounded-t-[5rem] 2xl:pt-5 2xl:mb-16'}`}
               >
-                <div className="w-32 h-32 bg-blue-500 rounded-full flex justify-center items-center">
+                <div className="w-30 h-30 bg-blue-500 rounded-full flex justify-center items-center">
                   <FontAwesomeIcon icon={icons[index]} size="2x" color="#fff" />
                 </div>
                 <div className="mt-4 text-gray-800 font-sans text-center">{item?.service}</div>
