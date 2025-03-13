@@ -6,6 +6,7 @@ const products = data?.productsData;
 const Product1 = ({
     productId,
     imgID = [],
+    idPage,
 }) => {
     const [productData, setProductData] = useState(null);
     const [imageData, setImageData] = useState([]);
@@ -24,7 +25,7 @@ const Product1 = ({
     }, [productId, imgID]);
 
     return (
-        <div className="w-full min-h-screen flex  flex-col md:h-screen md:max-h-screen md:overflow-hidden">
+        <div id={idPage} className="w-full min-h-screen flex  flex-col md:h-screen md:max-h-screen md:overflow-hidden">
             <div className="flex flex-col  flex-grow w-full h-[calc(100vh-2rem)] md:flex-row  md:justify-start md:items-center mt-20">
                 <div className=" md:w-40 md:h-40 bg-blue-700 -z-40 relative -top-95 -left-10"></div>
                 <div className=" h-1/2 mt-10 mx-10 justify-center md:space-y-10 md:h-auto md:overflow-y-auto md:w-7/12">

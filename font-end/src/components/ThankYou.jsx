@@ -16,7 +16,7 @@ export default function ThankYou() {
     }, []);
 
     return (
-        <div className="w-full h-screen flex flex-col items-center select-none">
+        <div id="thankyou" className="w-full h-screen flex flex-col items-center select-none">
             <div className="w-screen h-[22vh]"></div>
             <div className="flex flex-col justify-center items-center h-[40vh] overflow-hidden">
                 <div className="flex space-x-4 mb-4">

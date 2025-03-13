@@ -13,7 +13,7 @@ export default function Employees() {
   }, []);
 
   return (
-    <div className="flex flex-col flex-1 items-center min-h-screen bg-gray-100 select-none">
+    <div id="employee" className="flex flex-col flex-1 items-center min-h-screen bg-gray-100 select-none">
       <div className="flex justify-center items-center w-full h-[30vh] text-blue-600 text-5xl font-bold">
       THÀNH VIÊN CỦA CHÚNG TÔI
       </div>

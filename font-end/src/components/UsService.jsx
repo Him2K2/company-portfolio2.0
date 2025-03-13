@@ -20,7 +20,7 @@ export default function UsService({ companyId }) {
     }
   }, [companyId]);
   return (
-    <div className="w-full min-h-screen flex flex-col bg-gray-100 select-none">
+    <div id="usservice" className="w-full min-h-screen flex flex-col bg-gray-100 select-none">
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="w-full h-[25vh] flex justify-center items-center text-5xl font-bold bg-gradient-to-r from-blue-500 to-blue-900 text-transparent bg-clip-text font-sans">
           DỊCH VỤ CỦA CHÚNG TÔI

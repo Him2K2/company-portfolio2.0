@@ -5,22 +5,22 @@ import { AiOutlineGlobal } from "react-icons/ai";
 import { IoLogoGameControllerA } from "react-icons/io";
 import { FaBuildingUser } from "react-icons/fa6";
 
-function Header() {
+function Header({ activeSection, setActiveSection }) { // Nhận props activeSection và setActiveSection
   const [company, setCompany] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const exportToPDF = () => {
-    window.print(); // Kích hoạt chức năng in của trình duyệt
+    window.print();
   };
-  // Hàm scroll tổng quát dùng ID
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+      setActiveSection(id); // Cập nhật active section khi click nút header
     }
   };
 
-  // Đóng menu khi click (mobile)
   const handleMobileClick = (id) => {
     scrollToSection(id);
     setIsMenuOpen(false);
@@ -43,11 +43,25 @@ function Header() {
       </a>
 
       <div>
-
         <ul className="hidden md:flex items-center gap-12">
-          <li className="p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all  flex items-center" onClick={() => scrollToSection("part1")} >WEB/APP <AiOutlineGlobal className="ml-1" /></li>
-          <li className="p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center" onClick={() => scrollToSection("part2")}>GAME<IoLogoGameControllerA className="ml-1 text-2xl" /></li>
-          <li className="p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center" onClick={() => scrollToSection("part3")}>ABOUTE US <FaBuildingUser className="ml-2 text-xl" /></li>
+          <li
+            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${activeSection === 'part1' || activeSection === 'product1' || activeSection === 'product2' || activeSection === 'product3' ? 'bg-blue-500' : ''}`} // Highlight nút active
+            onClick={() => scrollToSection("part1")}
+          >
+            WEB/APP <AiOutlineGlobal className="ml-1" />
+          </li>
+          <li
+            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${activeSection === 'part2' || activeSection === 'product4' || activeSection === 'product5' || activeSection === 'product6' || activeSection === 'product7' ? 'bg-blue-500' : ''}`} // Highlight nút active
+            onClick={() => scrollToSection("part2")}
+          >
+            GAME <IoLogoGameControllerA className="ml-1 text-2xl" />
+          </li>
+          <li
+            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${activeSection === 'part3' || activeSection === 'usservice' || activeSection === 'employee' || activeSection === 'thankyou' ? 'bg-blue-500' : ''}`} // Highlight nút active
+            onClick={() => scrollToSection("part3")}
+          >
+            ABOUTE US <FaBuildingUser className="ml-2 text-xl" />
+          </li>
         </ul>
       </div>
       <div className="hidden md:block w-68"></div>

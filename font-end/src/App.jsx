@@ -18,6 +18,7 @@ const ThankYou = lazy(() => import("./components/ThankYou"));
 
 const App = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +42,14 @@ const App = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    // Cập nhật URL khi activeSection thay đổi
+    if (activeSection) {
+      const url = `#${activeSection}`;
+      window.history.replaceState({}, '', url);
+    }
+  }, [activeSection]);
+
   if (!dataLoaded) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -54,14 +63,14 @@ const App = () => {
   const pages = [
     <AbouteUs />,
     <ProductIntroduction1 productId={7} imgID={[10, 11, 12, 13, 14]} />,
-    <Product1 productId={1} imgID={[1]} />,
-    <Product1 productId={13} imgID={[25]}/>,
-    <Product4 productId={10} imgID={[30,31,37,38]}></Product4>,
+    <Product1 productId={1} imgID={[1]} idPage={"product1"} />,
+    <Product1 productId={13} imgID={[25]} idPage={"product2"} />,
+    <Product4 productId={10} imgID={[30, 31, 37, 38]} idPage={"product3"} ></Product4>,
     <ProductIntroduction2 productId={3} imgID={[4, 5, 6, 3, 7]} />,
-    <Product4 productId={4} imgID={[15, 16, 17, 18]} />,
-    <Product2 productId={2} imgID={[19, 22]} />,
-    <Product2 productId={11} imgID={[27,26]}/>,
-    <Product2 productId={12} imgID={[29]}/>,
+    <Product4 productId={4} imgID={[15, 16, 17, 18]} idPage={"product4"} />,
+    <Product2 productId={2} imgID={[19, 22]} idPage={"product5"} />,
+    <Product2 productId={11} imgID={[27, 26]} idPage={"product6"} />,
+    <Product2 productId={12} imgID={[29]} idPage={"product7"} />,
     <ProductIntroduction3 productId={7} imgID={[24]} />,
     <UsService companyId={1} />,
     <Employees />,
@@ -73,22 +82,34 @@ const App = () => {
       <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
         <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
       </div>}>
-        <Header className="no-print"></Header>
-        <PageWrapper id="home" className="page-wrapper">
+        <Header className="no-print" activeSection={activeSection} setActiveSection={setActiveSection} />
+        <PageWrapper id="home" sectionId="home" setActiveSection={setActiveSection} className="page-wrapper">
           {homePage}
         </PageWrapper>
 
         {pages.map((page, index) => {
           let sectionId = null;
-          if (index === 2) sectionId = "part1"; // PHẦN I - ProductIntroduction1
-          if (index === 5) sectionId = "part2"; // PHẦN II - ProductIntroduction2 
-          if (index === 10) sectionId = "part3"; // PHẦN III - ProductIntroduction3
-
+          if (index === 0) sectionId = "abouteus";
+          if (index === 1) sectionId = "part1"; // PHẦN I - ProductIntroduction1 (index 1 vì Home là index 0 ngầm định)
+          if (index === 2) sectionId = "product1"; 
+          if (index === 3) sectionId = "product2"; 
+          if (index === 4) sectionId = "product3"; 
+          if (index === 5) sectionId = "part2"; // PHẦN II - ProductIntroduction2 (index 4)
+          if (index === 6) sectionId = "product4"; 
+          if (index === 7) sectionId = "product5"; 
+          if (index === 8) sectionId = "product6"; 
+          if (index === 9) sectionId = "product7"; 
+          if (index === 10) sectionId = "part3"; // PHẦN III - ProductIntroduction3 (index 9)
+          if (index === 11) sectionId = "usservice";
+          if (index === 12) sectionId = "employee";
+          if (index === 13) sectionId = "thankyou";
           return (
             <PageWrapper
               key={index}
               pageNumber={index + 2}
               id={sectionId}
+              sectionId={sectionId}
+              setActiveSection={setActiveSection}
               className="page-wrapper"
             >
               {page}

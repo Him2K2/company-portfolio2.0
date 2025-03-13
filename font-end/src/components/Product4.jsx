@@ -7,6 +7,7 @@ const products = data?.productsData;
 const Product4 = ({
   productId,
   imgID = [],
+  idPage,
 }) => {
   const [productData, setProductData] = useState(null);
   const [imageData, setImageData] = useState([]);
@@ -24,7 +25,7 @@ const Product4 = ({
     }
   }, [productId, imgID]);
   return (
-    <div className='flex flex-col  min-h-screen justify-center items-center select-none  md:overflow-hidden'>
+    <div id={idPage} className='flex flex-col  min-h-screen justify-center items-center select-none  md:overflow-hidden'>
       <div className='w-screen max-h-[calc(100vh-90vh)] md:min-h-20'></div>
       <div className='w-screen max-h-[calc(100vh-65vh)] flex flex-col items-center justify-center'>
         <img src={imageData[0]} className="w-30 md:w-12"></img>
