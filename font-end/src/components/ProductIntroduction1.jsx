@@ -37,8 +37,8 @@ const ProductIntroduction1 = ({
                         <img src={imageData[2]} className="absolute w-full h-full object-cover"></img>
                     </div>
                     <div className=" bg-blue-800 text-white text-3xl  h-full w-full flex flex-col items-center min-w-full justify-center p-4 col-span-2 ">
-                        <h1>Phần I</h1>
-                        <p className="font-medium text-4xl">Dự Án WEB/APP</p>
+                        <h1>PHẦN I</h1>
+                        <p className="font-medium text-4xl">DỰ ÁN WEB/APP</p>
                     </div>
                     <div className=" relative text-white flex items-center justify-center md:h-full md:w-full p-4">
                         <img src={imageData[3]} className="absolute w-full h-full object-cover"></img>

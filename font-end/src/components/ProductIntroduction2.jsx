@@ -35,7 +35,7 @@ const ProductIntroduction2 = ({
                     </div>
                     <div className=" bg-blue-800 text-white text-3xl  h-full w-full flex flex-col items-center min-w-full justify-center p-4 col-span-2 ">
                         <h1>Phần II</h1>
-                        <p className="font-medium text-4xl">Dự Án GAME</p>
+                        <p className="font-medium text-4xl">DỰ ÁN GAME</p>
                     </div>
                     <div className=" relative bg-blue-500 text-white flex items-center justify-center md:h-full md:w-full p-4">
                         <img src={imageData[3]} className="absolute w-full h-full object-cover"></img>

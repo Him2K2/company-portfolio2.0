@@ -46,8 +46,8 @@ function Header() {
 
         <ul className="hidden md:flex items-center gap-12">
           <li className="p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all  flex items-center" onClick={() => scrollToSection("part1")} >WEB/APP <AiOutlineGlobal className="ml-1" /></li>
-          <li className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex items-center" onClick={() => scrollToSection("part2")}>GAME<IoLogoGameControllerA className="ml-1 text-2xl" /></li>
-          <li className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex items-center" onClick={() => scrollToSection("part3")}>ABOUTE US <FaBuildingUser className="ml-2 text-xl" /></li>
+          <li className="p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center" onClick={() => scrollToSection("part2")}>GAME<IoLogoGameControllerA className="ml-1 text-2xl" /></li>
+          <li className="p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center" onClick={() => scrollToSection("part3")}>ABOUTE US <FaBuildingUser className="ml-2 text-xl" /></li>
         </ul>
       </div>
       <div className="hidden md:block w-68"></div>
@@ -62,6 +62,7 @@ function Header() {
         <li className="p-3 hover:bg-blue-500 cursor-pointer transition-all" onClick={() => handleMobileClick("part2")}>PHẦN II</li>
         <li className="p-3 hover:bg-blue-500 cursor-pointer transition-all" onClick={() => handleMobileClick("part3")}>PHẦN III</li>
       </div>
+      <div className="p-4 cursor-pointer print-hidden flex items-center" >ToIMAGE</div>
 
       <div className="p-4 cursor-pointer print-hidden flex items-center" onClick={exportToPDF}>ToPDF <RiLogoutBoxRFill className="text-white text-3xl" /> </div>
       <TiThMenuOutline

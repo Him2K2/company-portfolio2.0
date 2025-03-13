@@ -15,7 +15,7 @@ export default function Employees() {
   return (
     <div className="flex flex-col flex-1 items-center min-h-screen bg-gray-100 select-none">
       <div className="flex justify-center items-center w-full h-[30vh] text-blue-600 text-5xl font-bold">
-        Thành Viên Của Chúng Tôi
+      THÀNH VIÊN CỦA CHÚNG TÔI
       </div>
       <div className="flex flex-wrap justify-center gap-6 p-4">
         {employees.map((item, index) => (

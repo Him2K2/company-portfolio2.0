@@ -30,8 +30,8 @@ const ProductIntroduction3 = ({
                     <div className="w-full bg-blue-700 min-h-[30vh] "></div>
                     <div className="w-full  flex flex-col justify-center items-center h-[40vh] md:mr-20 md:w-[60vw] md:flex-row">
                         <div className="flex flex-col justify-center items-center">
-                            <h1 className="text-2xl text-blue-700">Phần III</h1>
-                            <p className="text-4xl font-bold text-blue-900">Về YOTECH</p>
+                            <h1 className="text-2xl text-blue-700">PHẦN III</h1>
+                            <p className="text-4xl font-bold text-blue-900">VỀ YOTECH</p>
                         </div>
                     </div>
                     <div className="w-full bg-blue-700 min-h-[30vh]"></div>
