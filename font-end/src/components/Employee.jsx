@@ -17,7 +17,7 @@ export default function Employees() {
       <div className="flex justify-center items-center w-full h-[30vh] text-blue-600 text-5xl font-bold">
       THÀNH VIÊN CỦA CHÚNG TÔI
       </div>
-      <div className="flex flex-wrap justify-center gap-6 p-4">
+      <div className="flex flex-wrap justify-center gap-6 p-4 cursor-pointer">
         {employees.map((item, index) => (
           <div
             key={index}
