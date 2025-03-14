@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import domtoimage from 'dom-to-image';
+
+//icon
 import { TiThMenuOutline } from "react-icons/ti";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { AiOutlineGlobal } from "react-icons/ai";
@@ -8,10 +11,15 @@ import { IoHome } from "react-icons/io5";
 import { LuImageUp } from "react-icons/lu";
 import { PiFilePdfDuotone } from "react-icons/pi";
 
+
+
 function Header({ activeSection, setActiveSection }) {
   const [company, setCompany] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isExport, setIsExport] = useState(false);
+  
+  const JSZip = window.JSZip;
+  const { saveAs } = window;
 
   const exportToPDF = () => {
     window.print();
@@ -36,6 +44,55 @@ function Header({ activeSection, setActiveSection }) {
       setCompany(data.company);
     }
   }, []);
+
+  const handleExportToImage = async () => {
+    setIsExport(false);
+    const sectionIds = [
+      'home',
+      'abouteus',
+      'part1',
+      'product1',
+      'product2',
+      'product3',
+      'part2',
+      'product4',
+      'product5',
+      'product6',
+      'product7',
+      'part3',
+      'usservice',
+      'employee',
+      'thankyou'
+    ];
+
+    const zip = new JSZip();
+
+    for (const id of sectionIds) {
+      const element = document.getElementById(id);
+      if (!element) continue;
+
+      try {
+        // Sử dụng dom-to-image để chụp ảnh
+        const dataUrl = await domtoimage.toPng(element, {
+          quality: 1, // Chất lượng ảnh
+          bgcolor: '#ffffff', // Màu nền (nếu cần)
+        });
+
+        // Chuyển đổi data URL thành blob
+        const blob = await fetch(dataUrl).then((res) => res.blob());
+
+        // Thêm blob vào zip
+        zip.file(`${id}.png`, blob);
+      } catch (error) {
+        console.error(`Lỗi khi chụp ${id}:`, error);
+      }
+    }
+    
+
+    // Tạo file zip và tải xuống
+    const content = await zip.generateAsync({ type: 'blob' });
+    saveAs(content, 'portfolio_screenshots.zip');
+  };
 
   return (
     <div className="w-screen flex h-15 bg-blue-700 p-5 text-white fixed justify-between items-center z-50 mb-auto md:h-15 lg:w-[80vw] select-none print-hidden">
@@ -90,8 +147,13 @@ function Header({ activeSection, setActiveSection }) {
         className={`absolute z-50 rounded-2xl top-16 right-0 w-[7rem]   bg-blue-700 flex flex-col justify-center gap-1  text-[0.9rem] transform transition-transform ${isExport ? "opacity-90 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-5"
           }`}
       >
-        <li className="p-1 hover:bg-blue-500 cursor-pointer transition-all rounded-2xl flex justify-start items-center " onClick={() => handleMobileClick("part1")}> ToImage <LuImageUp className="text-2xl ml-2" /></li>
-        <li className="p-1 hover:bg-blue-500 cursor-pointer transition-all rounded-2xl flex justify-start items-center" onClick={exportToPDF}>ToPDF <PiFilePdfDuotone className="text-[1.8rem] ml-2"/></li>
+        <li
+          className="p-1 hover:bg-blue-500 cursor-pointer transition-all rounded-2xl flex justify-start items-center"
+          onClick={handleExportToImage}
+        >
+          ToImage <LuImageUp className="text-2xl ml-2" />
+        </li>
+        <li className="p-1 hover:bg-blue-500 cursor-pointer transition-all rounded-2xl flex justify-start items-center" onClick={exportToPDF}>ToPDF <PiFilePdfDuotone className="text-[1.8rem] ml-2" /></li>
       </div>
       <div className="p-4 cursor-pointer print-hidden flex items-center" onClick={() => setIsExport(prev => !prev)}>ExPort<RiLogoutBoxRFill className="text-white text-3xl" /> </div>
       <TiThMenuOutline

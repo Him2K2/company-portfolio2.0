@@ -8,20 +8,17 @@ const ProductIntroduction2 = ({
     productId,
     imgID = [],
 }) => {
-    const [productData, setProductData] = useState(null);
     const [imageData, setImageData] = useState([]);
 
     useEffect(() => {
         const product = products.find((item) => item.id === productId);
         if (product) {
-            setProductData(product);
             const imgData = product.img
                 .filter((item) => imgID.includes(item.id))
                 .map((item) => item.image_url);
             setImageData(imgData);
         }
     }, [productId, imgID]);
-    console.log(productData);
     
     return (
         <div id="part2" className="flex overflow-hidden flex-col max-w-screen max-h-screen select-none px-4">

@@ -7,14 +7,12 @@ const ProductIntroduction1 = ({
     productId,
     imgID = [],
 }) => {
-    const [productData, setProductData] = useState(null);
     const [imageData, setImageData] = useState([]);
 
     useEffect(() => {
         const product = products.find((item) => item.id === productId);
         if (product) {
 
-            setProductData(product);
             const imgData = product.img
                 .filter((item) => imgID.includes(item.id))
                 .map((item) => item.image_url);
@@ -22,7 +20,7 @@ const ProductIntroduction1 = ({
 
         }
     }, [productId, imgID]);
-    console.log(productData);
+    // console.log(productData);
     return (
         <div id="part1" className="flex overflow-hidden flex-col max-w-screen max-h-screen select-none">
             <div className="w-full  max-h-[calc(100vh-2rem)] md:flex md:w-full md:h-full">
@@ -48,7 +46,7 @@ const ProductIntroduction1 = ({
                     </div>
                 </div>
             </div>
-          
+
         </div>
     )
 }

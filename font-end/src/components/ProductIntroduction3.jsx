@@ -8,20 +8,17 @@ const ProductIntroduction3 = ({
     productId,
     imgID = [],
 }) => {
-    const [productData, setProductData] = useState(null);
     const [imageData, setImageData] = useState([]);
 
     useEffect(() => {
         const product = products.find((item) => item.id === productId);
         if (product) {
-            setProductData(product);
             const imgData = product.img
                 .filter((item) => imgID.includes(item.id))
                 .map((item) => item.image_url);
             setImageData(imgData);
         }
     }, [productId, imgID]);
-    console.log(productData);
 
     return (
         <div id="part3" className=" h-[100vh] select-none ">
@@ -40,9 +37,6 @@ const ProductIntroduction3 = ({
                     <img src={imageData[0]} className=" md:min-w-[25vw] md:h-[80vh]"></img>
                 </div>
             </div>
-            {/* <div className="w-screen h-8 !important bg-blue-600 mt-auto relative z-10">
-                <button className="px-10 py-1 text-white bg-stone-800 absolute -top-3 left-10">Page No:18</button>
-            </div> */}
 
         </div>
     )

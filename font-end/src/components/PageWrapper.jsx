@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, memo } from "react";
 
-const PageWrapper = ({ pageNumber, children, id, sectionId, setActiveSection }) => {
+const PageWrapper = memo(({ pageNumber, children, id, sectionId, setActiveSection }) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -8,11 +8,11 @@ const PageWrapper = ({ pageNumber, children, id, sectionId, setActiveSection }) 
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            setActiveSection(sectionId || id || 'home'); // Set active section
+            setActiveSection(sectionId || id || 'home');
           }
         });
       },
-      { threshold: 0.5 } // Ngưỡng 60% section hiển thị thì active
+      { threshold: 0.9 }
     );
 
     if (ref.current) {
@@ -41,6 +41,6 @@ const PageWrapper = ({ pageNumber, children, id, sectionId, setActiveSection }) 
       )}
     </div>
   );
-};
+});
 
 export default PageWrapper;

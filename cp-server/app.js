@@ -3,11 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var cors = require('cors'); // Import middleware cors
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var productsRouter = require('./routes/products')
+var productsRouter = require('./routes/products');
 var portfoliosRouter = require('./routes/portfolios');
 const DataManager = require('./data-manager');
 
@@ -23,6 +23,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Cấu hình CORS
+const corsOptions = {
+  origin: 'http://192.168.1.211:5173', // Thay thế bằng URL frontend của bạn nếu khác
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/portfolios', portfoliosRouter);
@@ -30,11 +39,6 @@ app.use('/products', productsRouter);
 
 const dataFileUrl = "https://docs.google.com/spreadsheets/d/1oRJkMRKAAhgmepzRahS1mwXcXcG-EgdR/export?format=xlsx";
 DataManager.fetchData(dataFileUrl);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
 // error handler
 app.use(function(err, req, res, next) {
