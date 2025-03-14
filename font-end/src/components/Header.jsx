@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import domtoimage from 'dom-to-image';
+// import { jsPDF } from 'jspdf';
 
 //icon
 import { TiThMenuOutline } from "react-icons/ti";
@@ -76,6 +77,7 @@ function Header({ activeSection, setActiveSection }) {
         const dataUrl = await domtoimage.toPng(element, {
           quality: 1, // Chất lượng ảnh
           bgcolor: '#ffffff', // Màu nền (nếu cần)
+          skipCrossOrigin: true, 
         });
 
         // Chuyển đổi data URL thành blob
@@ -164,4 +166,4 @@ function Header({ activeSection, setActiveSection }) {
   );
 }
 
-export default Header;
+export default  React.memo(Header);

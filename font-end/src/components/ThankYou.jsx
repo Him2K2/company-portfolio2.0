@@ -5,7 +5,7 @@ import { FaLink } from "react-icons/fa";
 
 const data = JSON.parse(localStorage.getItem("data"));
 
-export default function ThankYou() {
+ function ThankYou() {
     const [company, setCompany] = useState(null);
 
     useEffect(() => {
@@ -47,3 +47,4 @@ export default function ThankYou() {
         </div>
     );
 }
+export default React.memo(ThankYou);

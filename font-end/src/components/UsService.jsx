@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const data = JSON.parse(localStorage.getItem("data"));
-export default function UsService({ companyId }) {
+function UsService({ companyId }) {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
@@ -50,3 +50,4 @@ export default function UsService({ companyId }) {
   );
 
 }
+export default React.memo(UsService);

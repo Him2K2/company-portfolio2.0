@@ -55,4 +55,4 @@ const AbouteUs = () => {
     )
 }
 
-export default AbouteUs
+export default React.memo(AbouteUs);

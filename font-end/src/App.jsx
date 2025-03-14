@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy, Suspense, useMemo } from "react";
+import React, { useEffect, useState, lazy, Suspense, useMemo, useCallback } from "react";
 import axios from "axios";
 import { RiLoader4Line } from "react-icons/ri";
 import PageWrapper from "./components/PageWrapper";
@@ -19,6 +19,11 @@ const ThankYou = lazy(() => import("./components/ThankYou"));
 const App = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [isExportingPDF, setIsExportingPDF] = useState(false); // Thêm state này
+
+  const memoizedSetActiveSection = useCallback((section) => {
+    setActiveSection(section);
+  },);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +44,7 @@ const App = () => {
     };
 
     fetchData();
-  }, []);
+  },);
 
   useEffect(() => {
     // Cập nhật URL khi activeSection thay đổi
@@ -68,7 +73,7 @@ const App = () => {
     <UsService key="service" companyId={1} />,
     <Employees key="employees" />,
     <ThankYou key="thankyou" />,
-  ], []);
+  ],);
 
   if (!dataLoaded) {
     return (
@@ -80,13 +85,14 @@ const App = () => {
 
   return (
     <div className="flex flex-col max-w-screen items-center print:block print:w-[210mm] print:mx-auto bg-black">
-      <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
-        <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
-      </div>}>
-        <Header className="no-print" activeSection={activeSection} setActiveSection={setActiveSection} />
-        <PageWrapper id="home" sectionId="home" setActiveSection={setActiveSection} className="page-wrapper">
-          {homePage}
-        </PageWrapper>
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
+      <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
+    </div>}>
+      <Header className="no-print" activeSection={activeSection} setActiveSection={memoizedSetActiveSection} setIsExportingPDF={setIsExportingPDF} /> {/* Truyền prop setIsExportingPDF */}
+      <PageWrapper id="home" sectionId="home" setActiveSection={memoizedSetActiveSection} className="page-wrapper">
+        {homePage}
+      </PageWrapper>
+
 
         {pages.map((page, index) => {
           let sectionId = null;
@@ -110,8 +116,9 @@ const App = () => {
               pageNumber={index + 2}
               id={sectionId}
               sectionId={sectionId}
-              setActiveSection={setActiveSection}
+              setActiveSection={memoizedSetActiveSection}
               className="page-wrapper"
+              isExportingPDF={isExportingPDF}
             >
               {page}
             </PageWrapper>
@@ -122,4 +129,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default  React.memo(App);

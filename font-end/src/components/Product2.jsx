@@ -62,4 +62,4 @@ const Product2 = ({
     )
 }
 
-export default Product2
+export default React.memo(Product2);

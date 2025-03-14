@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import img from "../assets/img/error.png"
+import img from "../assets/img/error.png";
 import { FaFacebookF, FaTwitter, FaDribbble, FaGithub } from "react-icons/fa";
 
 const data = JSON.parse(localStorage.getItem("data"));
 
-export default function Employees() {
+function Employees() {
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function Employees() {
   return (
     <div id="employee" className="flex flex-col flex-1 items-center min-h-screen bg-gray-100 select-none">
       <div className="flex justify-center items-center w-full h-[30vh] text-blue-600 text-5xl font-bold">
-      THÀNH VIÊN CỦA CHÚNG TÔI
+        THÀNH VIÊN CỦA CHÚNG TÔI
       </div>
       <div className="flex flex-wrap justify-center gap-6 p-4 cursor-pointer">
         {employees.map((item, index) => (
@@ -44,7 +44,8 @@ export default function Employees() {
           </div>
         ))}
       </div>
-     
     </div>
   );
 }
+
+export default React.memo(Employees);

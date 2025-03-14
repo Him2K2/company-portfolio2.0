@@ -42,4 +42,4 @@ const ProductIntroduction3 = ({
     )
 }
 
-export default ProductIntroduction3
+export default React.memo(ProductIntroduction3);

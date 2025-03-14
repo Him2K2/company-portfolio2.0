@@ -48,4 +48,4 @@ const Product4 = ({
   )
 }
 
-export default Product4
+export default React.memo(Product4);
