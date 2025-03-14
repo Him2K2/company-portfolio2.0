@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import domtoimage from 'dom-to-image';
-// import { jsPDF } from 'jspdf';
+import domtoimage from "dom-to-image";
+import { jsPDF } from "jspdf"; 
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
+
 
 //icon
 import { TiThMenuOutline } from "react-icons/ti";
@@ -12,20 +15,66 @@ import { IoHome } from "react-icons/io5";
 import { LuImageUp } from "react-icons/lu";
 import { PiFilePdfDuotone } from "react-icons/pi";
 
-
-
 function Header({ activeSection, setActiveSection }) {
   const [company, setCompany] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isExport, setIsExport] = useState(false);
-  
-  const JSZip = window.JSZip;
-  const { saveAs } = window;
 
-  const exportToPDF = () => {
-    window.print();
+  // Xuất PDF bằng cách chụp màn hình từng section và ghép vào file PDF
+  const exportToPDF = async () => {
+    setIsExport(false);
+    const sectionIds = [
+      "home",
+      "abouteus",
+      "part1",
+      "product1",
+      "product2",
+      "product3",
+      "part2",
+      "product4",
+      "product5",
+      "product6",
+      "product7",
+      "part3",
+      "usservice",
+      "employee",
+      "thankyou"
+    ];
+
+    // Khởi tạo PDF với định dạng A4
+    const pdf = new jsPDF("p", "pt", "a4");
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    let isFirstPage = true;
+
+    for (const id of sectionIds) {
+      const element = document.getElementById(id);
+      if (!element) continue;
+
+      try {
+        // Chụp ảnh từng section sử dụng dom-to-image
+        const dataUrl = await domtoimage.toPng(element, {
+          quality: 1,
+          bgcolor: "#ffffff",
+          skipCrossOrigin: true
+        });
+
+        if (!isFirstPage) {
+          pdf.addPage();
+        }
+        // Thêm ảnh đã chụp vào PDF, tự động scale theo kích thước A4
+        pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
+        isFirstPage = false;
+      } catch (error) {
+        console.error(`Lỗi khi chụp ${id}:`, error);
+      }
+    }
+
+    // Lưu file PDF
+    pdf.save("portfolio.pdf");
   };
 
+  // Hàm chuyển tới section theo id
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -48,6 +97,7 @@ function Header({ activeSection, setActiveSection }) {
 
   const handleExportToImage = async () => {
     setIsExport(false);
+ 
     const sectionIds = [
       'home',
       'abouteus',
@@ -102,31 +152,61 @@ function Header({ activeSection, setActiveSection }) {
         onClick={() => scrollToSection("home")}
         className="bg-blue-700 cursor-pointer hover:bg-blue-600 flex items-center justify-center z-10 w-20 h-15"
       >
-        <img src={company?.logo_img_url} className="invert mix-blend-screen w-15 h-15" alt="Company Logo" />
+        <img
+          src={company?.logo_img_url}
+          className="invert mix-blend-screen w-15 h-15"
+          alt="Company Logo"
+        />
       </a>
 
       <div>
         <ul className="hidden md:flex items-center gap-5">
           <li
-            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${activeSection === 'home' || activeSection === 'abouteus' ? 'bg-blue-500' : ''}`}
+            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${
+              activeSection === "home" || activeSection === "abouteus"
+                ? "bg-blue-500"
+                : ""
+            }`}
             onClick={() => scrollToSection("home")}
           >
             <IoHome className="mr-1 text-[2rem]" /> Home
           </li>
           <li
-            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${activeSection === 'part1' || activeSection === 'product1' || activeSection === 'product2' || activeSection === 'product3' ? 'bg-blue-500' : ''}`}
+            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${
+              activeSection === "part1" ||
+              activeSection === "product1" ||
+              activeSection === "product2" ||
+              activeSection === "product3"
+                ? "bg-blue-500"
+                : ""
+            }`}
             onClick={() => scrollToSection("part1")}
           >
             <AiOutlineGlobal className="mr-1 text-[2rem]" /> Web/App
           </li>
           <li
-            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${activeSection === 'part2' || activeSection === 'product4' || activeSection === 'product5' || activeSection === 'product6' || activeSection === 'product7' ? 'bg-blue-500' : ''}`} // Highlight nút active
+            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${
+              activeSection === "part2" ||
+              activeSection === "product4" ||
+              activeSection === "product5" ||
+              activeSection === "product6" ||
+              activeSection === "product7"
+                ? "bg-blue-500"
+                : ""
+            }`}
             onClick={() => scrollToSection("part2")}
           >
             <IoLogoGameControllerA className="mr-1 text-[2rem]" /> Game
           </li>
           <li
-            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${activeSection === 'part3' || activeSection === 'usservice' || activeSection === 'employee' || activeSection === 'thankyou' ? 'bg-blue-500' : ''}`} // Highlight nút active
+            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${
+              activeSection === "part3" ||
+              activeSection === "usservice" ||
+              activeSection === "employee" ||
+              activeSection === "thankyou"
+                ? "bg-blue-500"
+                : ""
+            }`}
             onClick={() => scrollToSection("part3")}
           >
             <FaBuildingUser className="mr-2 text-[2rem] " />About Us
@@ -135,19 +215,39 @@ function Header({ activeSection, setActiveSection }) {
       </div>
       <div className="hidden md:block w-68"></div>
       {/* Mobile menu */}
-
       <div
-        className={`absolute z-50 md:hidden top-16 left-0 w-full bg-blue-700 flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${isMenuOpen ? "opacity-90 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-5"
-          }`}
+        className={`absolute z-50 md:hidden top-16 left-0 w-full bg-blue-700 flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${
+          isMenuOpen
+            ? "opacity-90 pointer-events-auto translate-y-0"
+            : "opacity-0 pointer-events-none -translate-y-5"
+        }`}
         style={{ transition: "transform 0.3s ease, opacity 0.3s ease" }}
       >
-        <li className="p-3 hover:bg-blue-500 cursor-pointer transition-all" onClick={() => handleMobileClick("part1")}>PHẦN I</li>
-        <li className="p-3 hover:bg-blue-500 cursor-pointer transition-all" onClick={() => handleMobileClick("part2")}>PHẦN II</li>
-        <li className="p-3 hover:bg-blue-500 cursor-pointer transition-all" onClick={() => handleMobileClick("part3")}>PHẦN III</li>
+        <li
+          className="p-3 hover:bg-blue-500 cursor-pointer transition-all"
+          onClick={() => handleMobileClick("part1")}
+        >
+          PHẦN I
+        </li>
+        <li
+          className="p-3 hover:bg-blue-500 cursor-pointer transition-all"
+          onClick={() => handleMobileClick("part2")}
+        >
+          PHẦN II
+        </li>
+        <li
+          className="p-3 hover:bg-blue-500 cursor-pointer transition-all"
+          onClick={() => handleMobileClick("part3")}
+        >
+          PHẦN III
+        </li>
       </div>
       <div
-        className={`absolute z-50 rounded-2xl top-16 right-0 w-[7rem]   bg-blue-700 flex flex-col justify-center gap-1  text-[0.9rem] transform transition-transform ${isExport ? "opacity-90 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none -translate-y-5"
-          }`}
+        className={`absolute z-50 rounded-2xl top-16 right-0 w-[7rem] bg-blue-700 flex flex-col justify-center gap-1 text-[0.9rem] transform transition-transform ${
+          isExport
+            ? "opacity-90 pointer-events-auto translate-y-0"
+            : "opacity-0 pointer-events-none -translate-y-5"
+        }`}
       >
         <li
           className="p-1 hover:bg-blue-500 cursor-pointer transition-all rounded-2xl flex justify-start items-center"
@@ -155,9 +255,19 @@ function Header({ activeSection, setActiveSection }) {
         >
           ToImage <LuImageUp className="text-2xl ml-2" />
         </li>
-        <li className="p-1 hover:bg-blue-500 cursor-pointer transition-all rounded-2xl flex justify-start items-center" onClick={exportToPDF}>ToPDF <PiFilePdfDuotone className="text-[1.8rem] ml-2" /></li>
+        <li
+          className="p-1 hover:bg-blue-500 cursor-pointer transition-all rounded-2xl flex justify-start items-center"
+          onClick={exportToPDF}
+        >
+          ToPDF <PiFilePdfDuotone className="text-[1.8rem] ml-2" />
+        </li>
       </div>
-      <div className="p-4 cursor-pointer print-hidden flex items-center" onClick={() => setIsExport(prev => !prev)}>ExPort<RiLogoutBoxRFill className="text-white text-3xl" /> </div>
+      <div
+        className="p-4 cursor-pointer print-hidden flex items-center"
+        onClick={() => setIsExport((prev) => !prev)}
+      >
+        ExPort<RiLogoutBoxRFill className="text-white text-3xl" />
+      </div>
       <TiThMenuOutline
         className="text-white w-10 h-10 md:hidden cursor-pointer"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -166,4 +276,4 @@ function Header({ activeSection, setActiveSection }) {
   );
 }
 
-export default  React.memo(Header);
+export default React.memo(Header);

@@ -19,11 +19,59 @@ const ThankYou = lazy(() => import("./components/ThankYou"));
 const App = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [isExportingPDF, setIsExportingPDF] = useState(false); // Thêm state này
+  const [isExportingPDF, setIsExportingPDF] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  const memoizedSetActiveSection = useCallback((section) => {
-    setActiveSection(section);
-  },);
+  const scrollToSection = useCallback((id, isManualScroll = false) => {
+    const element = document.getElementById(id);
+    if (element) {
+      if (!isManualScroll) {
+        window.history.replaceState({}, '', `#${id}`);
+      }
+      element.scrollIntoView({ behavior: "smooth" });
+      setActiveSection(id);
+    }
+  }, [setActiveSection]);
+
+  useEffect(() => {
+    if (dataLoaded) {
+      const hash = window.location.hash.substring(1);
+      const targetSection = hash || 'home';
+
+      const attemptScroll = () => {
+        const element = document.getElementById(targetSection);
+        if (element) {
+          scrollToSection(targetSection, true);
+          setIsInitialLoad(false);
+        } else {
+          setTimeout(attemptScroll, 100);
+        }
+      };
+
+      attemptScroll();
+    }
+  }, [dataLoaded, scrollToSection]);
+
+  useEffect(() => {
+    if (!isInitialLoad && activeSection) {
+      const currentHash = window.location.hash.substring(1);
+      if (currentHash !== activeSection) {
+        window.history.replaceState({}, '', `#${activeSection}`);
+      }
+    }
+  }, [activeSection, isInitialLoad]);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.substring(1);
+      if (hash) {
+        scrollToSection(hash, true);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [scrollToSection]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,16 +93,6 @@ const App = () => {
 
     fetchData();
   },);
-
-  useEffect(() => {
-    // Cập nhật URL khi activeSection thay đổi
-    if (activeSection) {
-      const url = `#${activeSection}`;
-      window.history.replaceState({}, '', url);
-    }
-  }, [activeSection]);
-
-
 
   const homePage = <Home />;
 
@@ -85,28 +123,32 @@ const App = () => {
 
   return (
     <div className="flex flex-col max-w-screen items-center print:block print:w-[210mm] print:mx-auto bg-black">
-    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
-      <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
-    </div>}>
-      <Header className="no-print" activeSection={activeSection} setActiveSection={memoizedSetActiveSection} setIsExportingPDF={setIsExportingPDF} /> {/* Truyền prop setIsExportingPDF */}
-      <PageWrapper id="home" sectionId="home" setActiveSection={memoizedSetActiveSection} className="page-wrapper">
-        {homePage}
-      </PageWrapper>
-
+      <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
+        <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
+      </div>}>
+        <Header
+          activeSection={activeSection}
+          scrollToSection={scrollToSection}
+          setIsExportingPDF={setIsExportingPDF}
+          setActiveSection={setActiveSection} // Pass setActiveSection here
+        />
+        <PageWrapper id="home" sectionId="home" setActiveSection={setActiveSection} className="page-wrapper">
+          {homePage}
+        </PageWrapper>
 
         {pages.map((page, index) => {
           let sectionId = null;
           if (index === 0) sectionId = "abouteus";
-          if (index === 1) sectionId = "part1"; // PHẦN I - ProductIntroduction1 (index 1 vì Home là index 0 ngầm định)
+          if (index === 1) sectionId = "part1";
           if (index === 2) sectionId = "product1";
           if (index === 3) sectionId = "product2";
           if (index === 4) sectionId = "product3";
-          if (index === 5) sectionId = "part2"; // PHẦN II - ProductIntroduction2 (index 4)
+          if (index === 5) sectionId = "part2";
           if (index === 6) sectionId = "product4";
           if (index === 7) sectionId = "product5";
           if (index === 8) sectionId = "product6";
           if (index === 9) sectionId = "product7";
-          if (index === 10) sectionId = "part3"; // PHẦN III - ProductIntroduction3 (index 9)
+          if (index === 10) sectionId = "part3";
           if (index === 11) sectionId = "usservice";
           if (index === 12) sectionId = "employee";
           if (index === 13) sectionId = "thankyou";
@@ -116,7 +158,7 @@ const App = () => {
               pageNumber={index + 2}
               id={sectionId}
               sectionId={sectionId}
-              setActiveSection={memoizedSetActiveSection}
+              setActiveSection={setActiveSection}
               className="page-wrapper"
               isExportingPDF={isExportingPDF}
             >
@@ -129,4 +171,4 @@ const App = () => {
   );
 };
 
-export default  React.memo(App);
+export default React.memo(App);

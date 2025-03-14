@@ -1,13 +1,19 @@
 import React, { useRef, useEffect, memo, useCallback } from "react";
 
-const PageWrapper = memo(({ pageNumber, children, id, sectionId, setActiveSection, isExportingPDF }) => { // Nhận prop isExportingPDF
+const PageWrapper = memo(({ pageNumber, children, id, sectionId, setActiveSection, isExportingPDF }) => {
   const ref = useRef(null);
 
   const handleIntersection = useCallback(
     (entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && !isExportingPDF) { // Kiểm tra trạng thái isExportingPDF
-          setActiveSection(sectionId || id || 'home');
+        if (entry.isIntersecting && !isExportingPDF) {
+          const targetSection = sectionId || id || 'home';
+          setActiveSection(targetSection);
+
+          const currentHash = window.location.hash.substring(1);
+          if (currentHash !== targetSection) {
+            window.history.replaceState({}, '', `#${targetSection}`);
+          }
         }
       });
     },
@@ -15,9 +21,11 @@ const PageWrapper = memo(({ pageNumber, children, id, sectionId, setActiveSectio
   );
 
   useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersection, { threshold: 0.9 });
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.5
+    });
 
-    if (ref.current && !isExportingPDF) { // Kiểm tra trạng thái isExportingPDF
+    if (ref.current && !isExportingPDF) {
       observer.observe(ref.current);
     }
 
@@ -26,7 +34,7 @@ const PageWrapper = memo(({ pageNumber, children, id, sectionId, setActiveSectio
         observer.unobserve(ref.current);
       }
     };
-  }, [handleIntersection, isExportingPDF]); // Thêm isExportingPDF vào dependency array
+  }, [handleIntersection, isExportingPDF]);
 
   return (
     <div ref={ref} id={id} className="relative w-full min-h-screen bg-white flex flex-col lg:max-w-[80vw] print:min-h-[277mm] print:block print:py-5">
