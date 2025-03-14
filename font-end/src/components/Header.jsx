@@ -20,7 +20,6 @@ function Header({ activeSection, setActiveSection }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isExport, setIsExport] = useState(false);
 
-  // Xuất PDF bằng cách chụp màn hình từng section và ghép vào file PDF
   const exportToPDF = async () => {
     setIsExport(false);
     const sectionIds = [
@@ -40,39 +39,50 @@ function Header({ activeSection, setActiveSection }) {
       "employee",
       "thankyou"
     ];
-
-    // Khởi tạo PDF với định dạng A4
+  
     const pdf = new jsPDF("p", "pt", "a4");
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
     let isFirstPage = true;
-
+  
     for (const id of sectionIds) {
       const element = document.getElementById(id);
       if (!element) continue;
-
+  
       try {
-        // Chụp ảnh từng section sử dụng dom-to-image
         const dataUrl = await domtoimage.toPng(element, {
           quality: 1,
           bgcolor: "#ffffff",
           skipCrossOrigin: true
         });
-
+  
+        const img = new Image();
+        img.src = dataUrl;
+        await new Promise((resolve) => (img.onload = resolve));
+        const imgWidth = img.naturalWidth;
+        const imgHeight = img.naturalHeight;
+  
+        const scale = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+        const newWidth = imgWidth * scale;
+        const newHeight = imgHeight * scale;
+  
+        const x = (pdfWidth - newWidth) / 2;
+        const y = (pdfHeight - newHeight) / 2;
+  
         if (!isFirstPage) {
           pdf.addPage();
         }
-        // Thêm ảnh đã chụp vào PDF, tự động scale theo kích thước A4
-        pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
+        pdf.addImage(dataUrl, "PNG", x, y, newWidth, newHeight);
         isFirstPage = false;
       } catch (error) {
         console.error(`Lỗi khi chụp ${id}:`, error);
       }
     }
-
+  
     // Lưu file PDF
     pdf.save("portfolio.pdf");
   };
+  
 
   // Hàm chuyển tới section theo id
   const scrollToSection = (id) => {
