@@ -16,20 +16,20 @@ const data = JSON.parse(localStorage.getItem("data"));
     }, []);
 
     return (
-        <div id="15thankyou" className="w-full h-screen flex flex-col items-center select-none">
-            <div className="max-w-screen h-[22vh]"></div>
-            <div className="flex flex-col justify-center items-center h-[40vh] overflow-hidden">
+        <div id="15thankyou" className="max-w-screen h-screen flex flex-col items-center select-none">
+            <div className="max-w-screen h-[25vh]"></div>
+            <div className="flex flex-col justify-center items-center w-full h-[40vh] overflow-hidden">
                 <div className="flex space-x-4 mb-4">
                     <div className="w-4 h-4 bg-blue-900"></div>
                     <div className="w-4 h-4 bg-blue-500"></div>
                     <div className="w-4 h-4 bg-blue-300"></div>
                 </div>
-                <div className="flex relative w-[100vw] justify-center">
-                    <div className="w-60 h-60 bg-gray-200  absolute bottom-10 right-65 hidden md:block"></div>
+                <div className="flex relative w-full justify-center">
+                    <div className="w-60 h-60 bg-gray-200  absolute bottom-10 right-20 hidden md:block"></div>
                     <div className="w-[60vw] h-[30vh] bg-blue-600 text-white flex justify-center items-center text-4xl font-bold relative z-10 md:text-8xl">
                         THANK YOU
                      </div>
-                    <div className="w-60 h-60 bg-gray-200 absolute bottom-10 left-65 hidden md:block"></div>
+                    <div className="w-60 h-60 bg-gray-200 absolute bottom-10 left-20 hidden md:block"></div>
                 </div>
             </div>
             <div className="w-full max-w-5xl flex flex-col md:flex-row justify-between items-center mt-20 px-10 space-y-4 md:space-y-0">
