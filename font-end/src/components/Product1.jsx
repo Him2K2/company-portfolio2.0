@@ -27,7 +27,7 @@ const Product1 = ({
     return (
         <div id={idPage} className="w-full min-h-screen flex  flex-col md:h-screen md:max-h-screen md:overflow-hidden">
             <div className="flex flex-col  flex-grow w-full h-[calc(100vh-2rem)] md:flex-row  md:justify-start md:items-center mt-20">
-                <div className=" md:w-40 md:h-40 bg-blue-700 -z-40 relative -top-95 -left-10"></div>
+                <div className=" md:w-40 md:h-40 bg-blue-700 z-40 relative -top-85 -left-10"></div>
                 <div className=" h-1/2 mt-10 mx-10 justify-center md:space-y-10 md:h-auto md:overflow-y-auto md:w-7/12">
                     <div className="font-bold text-blue-600 text-5xl mb-4 md:mb-10 select-none">{productData?.name}</div>
                     <div className="flex m-5 ml-0 md:flex md:items-center">
@@ -54,12 +54,11 @@ const Product1 = ({
                     <div className="mt-auto select-none">{productData?.manufacture_year}</div>
                 </div>
                 <div className=" w-full h-50 flex  justify-center items-center md:relative md:w-5/12 md:h-auto md:items-start md:justify-start select-none">
-                    <div className="hidden md:w-40 md:h-60 md:block  bg-blue-700 md:absolute -top-10 left-45 -z-10"></div>
-                    <img src={imageData[0]} className="w-40 h-60 md:w-75 md:h-110">
+                    <img src={imageData[0]} className="w-40 h-60 md:w-75 md:h-110 md:z-20">
                     </img>
-                     <div className="hidden md:w-40 md:h-60 md:block  bg-blue-700 md:absolute -top-10 left-45 -z-10"></div>
+                     <div className="hidden md:w-40 md:h-60 md:block  bg-blue-700 md:absolute -top-10 left-45 z-10"></div>
 
-                    <div className="hidden md:w-90 md:h-15 bg-blue-700 rounded-xl md:absolute top-90 left-16 md:flex justify-start md:items-center ">
+                    <div className="hidden md:w-90 md:h-15 bg-blue-700 rounded-xl md:absolute top-90 left-16 md:flex justify-start md:items-center md:z-20 ">
                         <p className="ml-10 text-white">Dự án Web</p>
                     </div>
                 </div>

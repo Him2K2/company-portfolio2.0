@@ -7,7 +7,7 @@ const PageWrapper = memo(({ pageNumber, children, id, sectionId, setActiveSectio
     (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !isExportingPDF) {
-          const targetSection = sectionId || id || 'home';
+          const targetSection = sectionId || id || "01home";
           setActiveSection(targetSection);
 
           const currentHash = window.location.hash.substring(1);

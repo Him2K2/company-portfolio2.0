@@ -5,7 +5,7 @@ import { FaLink } from "react-icons/fa";
 
 const data = JSON.parse(localStorage.getItem("data"));
 
- function ThankYou() {
+ function Thankyou() {
     const [company, setCompany] = useState(null);
 
     useEffect(() => {
@@ -16,8 +16,8 @@ const data = JSON.parse(localStorage.getItem("data"));
     }, []);
 
     return (
-        <div id="thankyou" className="w-full h-screen flex flex-col items-center select-none">
-            <div className="w-screen h-[22vh]"></div>
+        <div id="15thankyou" className="w-full h-screen flex flex-col items-center select-none">
+            <div className="max-w-screen h-[22vh]"></div>
             <div className="flex flex-col justify-center items-center h-[40vh] overflow-hidden">
                 <div className="flex space-x-4 mb-4">
                     <div className="w-4 h-4 bg-blue-900"></div>
@@ -47,4 +47,4 @@ const data = JSON.parse(localStorage.getItem("data"));
         </div>
     );
 }
-export default React.memo(ThankYou);
+export default React.memo(Thankyou);

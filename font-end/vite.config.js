@@ -18,7 +18,7 @@ export default defineConfig({
         secure: false,
       },
       '/images': {
-        target: 'http://192.168.1.211:3000', 
+        target: 'http://192.168.1.154:3000', 
         changeOrigin: true,
         secure: false,
       }

@@ -21,7 +21,7 @@ const ProductIntroduction3 = ({
     }, [productId, imgID]);
 
     return (
-        <div id="part3" className=" h-[100vh] select-none ">
+        <div id="12part3" className=" h-[100vh] select-none ">
             <div className=" md:flex">
                 <div className="max-w-[100vw] max-h-[100vh] flex flex-col md:w-[80vw]">
                     <div className="w-full bg-blue-700 min-h-[30vh] "></div>
