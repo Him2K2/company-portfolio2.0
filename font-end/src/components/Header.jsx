@@ -38,6 +38,7 @@ function Header({ activeSection, setActiveSection }) {
   const exportToPDF = async () => {
     setIsExportMenu(false);
     setIsExporting(true);
+    
     const sectionIds = [
       "01home",
       "02abouteus",
@@ -56,7 +57,8 @@ function Header({ activeSection, setActiveSection }) {
       "15thankyou"
     ];
   
-    const pdf = new jsPDF("p", "pt", "a4");
+    // Tạo PDF với định dạng A4 nằm ngang
+    const pdf = new jsPDF("l", "pt", "a4");
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
     let isFirstPage = true;
@@ -72,16 +74,19 @@ function Header({ activeSection, setActiveSection }) {
           skipCrossOrigin: true
         });
   
+        // Tạo hình ảnh để lấy kích thước gốc
         const img = new Image();
         img.src = dataUrl;
         await new Promise((resolve) => (img.onload = resolve));
         const imgWidth = img.naturalWidth;
         const imgHeight = img.naturalHeight;
   
+        // Tính tỷ lệ để scale hình vừa khít với tờ A4 landscape
         const scale = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
         const newWidth = imgWidth * scale;
         const newHeight = imgHeight * scale;
   
+        // Tính vị trí căn giữa hình ảnh
         const x = (pdfWidth - newWidth) / 2;
         const y = (pdfHeight - newHeight) / 2;
   
@@ -99,6 +104,7 @@ function Header({ activeSection, setActiveSection }) {
     pdf.save("portfolio.pdf");
     setIsExporting(false);
   };
+  
   
   const handleExportToImage = async () => {
     setIsExportMenu(false);

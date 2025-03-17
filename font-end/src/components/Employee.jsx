@@ -13,8 +13,8 @@ function Employees() {
   }, []);
 
   return (
-    <div id="employee" className="flex flex-col flex-1 items-center min-h-screen bg-gray-100 select-none">
-      <div className="flex justify-center items-center w-full h-[30vh] text-blue-600 text-5xl font-bold">
+    <div id="14employee" className="flex flex-col flex-1 items-center max-h-screen bg-gray-100 select-none">
+      <div className="flex justify-center items-center w-full h-[25vh] text-blue-600 text-4xl font-bold">
         THÀNH VIÊN CỦA CHÚNG TÔI
       </div>
       <div className="flex flex-wrap justify-center gap-6 p-4 cursor-pointer">
