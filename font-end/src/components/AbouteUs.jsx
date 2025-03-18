@@ -40,10 +40,10 @@ const AbouteUs = () => {
                         <div className="bg-blue-500 w-5 h-5 ml-1" ></div>
                         <div className="bg-blue-200 w-5 h-5 ml-1" ></div>
                     </div>
-                    <div className="mt-4 mb-6 w-full text-justify">
+                    <div className="mt-4 mb-6 w-full text-justify p-1">
                         {company?.info}
                     </div>
-                    <div className="grid grid-cols-[auto_1fr] gap-4 w-full max-w-lg mb-8">
+                    <div className="grid grid-cols-[auto_1fr] gap-4 w-full max-w-lg mb-8 p-2">
                         <div className="bg-blue-500 text-white flex items-center justify-center w-12 h-12 text-xl">1</div>
                         <div className="rounded-md">{company?.description[0]}</div>
                         <div className="bg-blue-800 text-white flex items-center justify-center w-12 h-12 text-xl">2</div>

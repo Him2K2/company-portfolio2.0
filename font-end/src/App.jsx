@@ -93,10 +93,11 @@ const App = () => {
     fetchData();
   }, []);
 
-  const homePage = <Home />;
+  // const homePage = <Home />;
 
   const pages = useMemo(
     () => [
+      <Home idPage={"01home"} />,
       <AboutUs key="about" />,
       <ProductIntroduction1 key="pi1" productId={7} imgID={[10, 11, 12, 13, 14]} />,
       <Product1 key="p1" productId={1} imgID={[1]} idPage={"04product1"} />,
@@ -133,12 +134,13 @@ const App = () => {
           setIsExportingPDF={setIsExportingPDF}
           setActiveSection={setActiveSection}
         />
-        <PageWrapper id="01home" sectionId="01home" setActiveSection={setActiveSection} className="page-wrapper">
+        {/* <PageWrapper id="01home"  pageNumber="0" sectionId="01home" setActiveSection={setActiveSection} className="page-wrapper">
           {homePage}
-        </PageWrapper>
+        </PageWrapper> */}
 
         {pages.map((page, index) => {
           const sectionIds = [
+            "01home",
             "02abouteus",
             "03part1",
             "04product1",
@@ -156,7 +158,7 @@ const App = () => {
           return (
             <PageWrapper
               key={index}
-              pageNumber={index + 2}
+              pageNumber={index+1}
               id={sectionIds[index]}
               sectionId={sectionIds[index]}
               setActiveSection={setActiveSection}

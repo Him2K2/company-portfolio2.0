@@ -43,8 +43,8 @@ const PageWrapper = memo(({ pageNumber, children, id, sectionId, setActiveSectio
       </div>
 
       {pageNumber > 0 && (
-        <div className="w-screen h-8 bg-blue-600 relative z-10 lg:max-w-[80vw]">
-          <button className="px-10 py-1 text-white bg-stone-800 absolute -top-3 left-10">
+        <div className="w-full h-8 bg-blue-600 relative z-10 flex justify-centerlg:max-w-[80vw] mt-auto">
+          <button className="px-10 py-1 text-white bg-stone-800 absolute -top-3 left-1/3 md:absolute md:-top-3 md:left-10">
             Page No: {pageNumber}
           </button>
         </div>

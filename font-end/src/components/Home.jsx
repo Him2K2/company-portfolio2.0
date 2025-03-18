@@ -11,7 +11,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div id="01home" className="relative w-full h-[100vh]  flex flex-col flex-1 justify-between items-center md:flex-row select-none " >
+    <div id="01home" className="relative w-full h-[calc(100vh-2rem)]  flex flex-col flex-1 justify-between items-center md:flex-row select-none " >
       <img src={company?.background_img_url} className="absolute inset-0 w-full h-full"></img>
       <div className="absolute inset-0 w-full h-full z-10 bg-black opacity-60 flex items-center"></div>
       <div className="absolute bg-gradient-to-r from-blue-800 to-sky-600  flex items-center justify-center z-10 w-110 h-70">

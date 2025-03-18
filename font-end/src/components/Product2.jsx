@@ -31,8 +31,8 @@ const Product2 = ({
         }
     }, [productId, imgID]);
     return (
-        <div id={idPage} className="min-h-screen md:h-screen select-none">
-            <div className="flex flex-col-reverse w-full h-full justify-center md:flex-row md:h-[calc(100vh-4rem)]">
+        <div id={idPage} className="min-h-screen md:h-full select-none">
+            <div className="flex flex-col-reverse w-full h-full justify-center md:flex-row md:h-full">
                 <div className="hidden md:block md:w-22 md:min-h-screen md:mr-auto">
                     <img src={hinh1} className="md:block md:max-w-[5vw]  md:min-w-[5vw]  md:h-[50vh]"></img>
                     <img src={hinh2} className="md:block md:max-w-[5vw]  md:min-w-[5vw]  md:h-[55vh]"></img>
@@ -42,12 +42,12 @@ const Product2 = ({
                 </div>
                 <div className="flex flex-col items-center md:ml-auto md:w-[55vw]">
                     <img src={imageData[1]} className="w-40 md:w-20  object-contain md:mt-20 md:mr-auto "></img>
-                    <div className="text-6xl text-blue-600 font-bold md:flex md:justify-start md:items-center md:mr-auto md:m-10">{productData?.name}</div>
+                    <div className="text-4xl md:text-6xl text-blue-600 font-bold md:flex md:justify-start md:items-center md:mr-auto md:m-10">{productData?.name}</div>
                     <img src={hinh3} className="w-50 m-5 md:mr-auto md:w-40 md:h-8 md:m-5 md:ml-10"></img>
                     <div className="flex w-[91%] items-center m-5 md:m-5 md:ml-20">
                         
                         <div><AiFillCheckCircle className=" text-3xl mr-5 h-full text-blue-600"/></div>
-                        <div className="text-xl">{productData?.description}</div>
+                        <div className="text-xl p-1">{productData?.description}</div>
                     </div>
                     <div className="hidden md:block md:mr-auto">
                     <button className="px-8 py-2 bg-blue-500 text-white rounded-lg mx-10">Frontend</button>

@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Cấu hình CORS
 const corsOptions = {
-  origin: 'http://192.168.154.:5173', // Thay thế bằng URL frontend của bạn nếu khác
+  origin: 'http://192.168.224.:5173', // Thay thế bằng URL frontend của bạn nếu khác
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };

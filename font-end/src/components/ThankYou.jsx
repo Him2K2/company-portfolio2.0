@@ -25,11 +25,11 @@ const data = JSON.parse(localStorage.getItem("data"));
                     <div className="w-4 h-4 bg-blue-300"></div>
                 </div>
                 <div className="flex relative w-full justify-center">
-                    <div className="w-60 h-60 bg-gray-200  absolute bottom-10 right-20 hidden md:block"></div>
-                    <div className="w-[60vw] h-[30vh] bg-blue-600 text-white flex justify-center items-center text-4xl font-bold relative z-10 md:text-8xl">
+                    <div className="w-60 h-60 bg-gray-200  absolute bottom-10 right-20 2xl:absoltule 2xl:bottom-20 2xl:right-10 hidden md:block"></div>
+                    <div className="w-[60vw] h-[30vh] bg-blue-600 text-white flex justify-center items-center text-2xl md:text-5xl lg:text-8xl font-bold relative z-10 ">
                         THANK YOU
                      </div>
-                    <div className="w-60 h-60 bg-gray-200 absolute bottom-10 left-20 hidden md:block"></div>
+                    <div className="w-60 h-60 bg-gray-200 absolute bottom-10 left-20 2xl:absoltule 2xl:bottom-20 2xl:right-10 hidden md:block"></div>
                 </div>
             </div>
             <div className="w-full max-w-5xl flex flex-col md:flex-row justify-between items-center mt-20 px-10 space-y-4 md:space-y-0">

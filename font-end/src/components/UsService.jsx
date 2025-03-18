@@ -20,9 +20,9 @@ function Usservice({ companyId }) {
     }
   }, [companyId]);
   return (
-    <div id="13usservice" className="w-full min-h-screen flex flex-col bg-gray-100 select-none">
+    <div id="13usservice" className="w-full min-h-screen flex flex-col select-none">
       <div className="flex-1 flex flex-col items-center justify-center">
-        <div className="w-full h-[25vh] flex justify-center items-center text-5xl font-bold bg-gradient-to-r from-blue-500 to-blue-900 text-transparent bg-clip-text font-sans">
+        <div className="w-full h-[25vh] flex justify-center items-center text-2xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-blue-900 text-transparent bg-clip-text font-sans">
           DỊCH VỤ CỦA CHÚNG TÔI
         </div>
         <div className="flex relative justify-center items-center flex-wrap py-8">
@@ -32,7 +32,7 @@ function Usservice({ companyId }) {
               <div
                 key={item.id}
                 className={`flex flex-col items-center p-4 w-60 h-60 ${index % 2 === 0 ?
-                  'flex-col-reverse 2xl:border-black 2xl:border-b-3   2xl:rounded-b-[7rem] 2xl:pb-5 2xl:mt-27 ' :
+                  'md:flex-col-reverse 2xl:border-black 2xl:border-b-3   2xl:rounded-b-[7rem] 2xl:pb-5 2xl:mt-27 ' :
                   '2xl:border-black 2xl:border-t-3 2xl:rounded-t-[5rem] 2xl:pt-5 2xl:mb-27'}`}
               >
 

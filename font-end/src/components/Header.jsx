@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import domtoimage from "dom-to-image";
-import { jsPDF } from "jspdf"; 
+import { jsPDF } from "jspdf";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 
@@ -23,7 +23,7 @@ function Header({ activeSection, setActiveSection }) {
 
   const handleExportHover = () => {
     if (exportTimeout) {
-      clearTimeout(exportTimeout); 
+      clearTimeout(exportTimeout);
     }
     setIsExportMenu(true);
   };
@@ -31,14 +31,14 @@ function Header({ activeSection, setActiveSection }) {
   const handleExportLeave = () => {
     const timeout = setTimeout(() => {
       setIsExportMenu(false);
-    }, 300); 
+    }, 100);
     setExportTimeout(timeout);
   };
 
   const exportToPDF = async () => {
     setIsExportMenu(false);
     setIsExporting(true);
-    
+
     const sectionIds = [
       "01home",
       "02abouteus",
@@ -56,40 +56,40 @@ function Header({ activeSection, setActiveSection }) {
       "14employee",
       "15thankyou"
     ];
-  
+
     // Tạo PDF với định dạng A4 nằm ngang
     const pdf = new jsPDF("l", "pt", "a4");
     const pdfWidth = pdf.internal.pageSize.getWidth();
     const pdfHeight = pdf.internal.pageSize.getHeight();
     let isFirstPage = true;
-  
+
     for (const id of sectionIds) {
       const element = document.getElementById(id);
       if (!element) continue;
-  
+
       try {
         const dataUrl = await domtoimage.toPng(element, {
           quality: 1,
           bgcolor: "#ffffff",
           skipCrossOrigin: true
         });
-  
+
         // Tạo hình ảnh để lấy kích thước gốc
         const img = new Image();
         img.src = dataUrl;
         await new Promise((resolve) => (img.onload = resolve));
         const imgWidth = img.naturalWidth;
         const imgHeight = img.naturalHeight;
-  
+
         // Tính tỷ lệ để scale hình vừa khít với tờ A4 landscape
         const scale = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
         const newWidth = imgWidth * scale;
         const newHeight = imgHeight * scale;
-  
+
         // Tính vị trí căn giữa hình ảnh
         const x = (pdfWidth - newWidth) / 2;
         const y = (pdfHeight - newHeight) / 2;
-  
+
         if (!isFirstPage) {
           pdf.addPage();
         }
@@ -99,13 +99,13 @@ function Header({ activeSection, setActiveSection }) {
         console.error(`Lỗi khi chụp ${id}:`, error);
       }
     }
-  
+
     // Lưu file PDF
     pdf.save("portfolio.pdf");
     setIsExporting(false);
   };
-  
-  
+
+
   const handleExportToImage = async () => {
     setIsExportMenu(false);
     setIsExporting(true);
@@ -146,7 +146,7 @@ function Header({ activeSection, setActiveSection }) {
         console.error(`Lỗi khi chụp ${id}:`, error);
       }
     }
-    
+
     const content = await zip.generateAsync({ type: "blob" });
     saveAs(content, "portfolio_screenshots.zip");
     setIsExporting(false);
@@ -188,51 +188,47 @@ function Header({ activeSection, setActiveSection }) {
       <div>
         <ul className="hidden md:flex items-center gap-5">
           <li
-            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${
-              activeSection === "01home" || activeSection === "02abouteus"
+            className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "01home" || activeSection === "02abouteus"
                 ? "bg-blue-500"
                 : ""
-            }`}
+              }`}
             onClick={() => scrollToSection("01home")}
           >
             <IoHome className="mr-1 text-[2rem]" /> Home
           </li>
           <li
-            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${
-              activeSection === "03part1" ||
-              activeSection === "04product1" ||
-              activeSection === "05product2" ||
-              activeSection === "06product3"
+            className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "03part1" ||
+                activeSection === "04product1" ||
+                activeSection === "05product2" ||
+                activeSection === "06product3"
                 ? "bg-blue-500"
                 : ""
-            }`}
+              }`}
             onClick={() => scrollToSection("03part1")}
           >
             <AiOutlineGlobal className="mr-1 text-[2rem]" /> Web/App
           </li>
           <li
-            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${
-              activeSection === "07part2" ||
-              activeSection === "08product4" ||
-              activeSection === "09product5" ||
-              activeSection === "10product6" ||
-              activeSection === "11product7"
+            className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "07part2" ||
+                activeSection === "08product4" ||
+                activeSection === "09product5" ||
+                activeSection === "10product6" ||
+                activeSection === "11product7"
                 ? "bg-blue-500"
                 : ""
-            }`}
+              }`}
             onClick={() => scrollToSection("07part2")}
           >
             <IoLogoGameControllerA className="mr-1 text-[2rem]" /> Game
           </li>
           <li
-            className={`p-3 hover:bg-blue-500 rounded-3xl cursor-pointer transition-all flex items-center ${
-              activeSection === "12part3" ||
-              activeSection === "13usservice" ||
-              activeSection === "14employee" ||
-              activeSection === "15thankyou"
+            className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "12part3" ||
+                activeSection === "13usservice" ||
+                activeSection === "14employee" ||
+                activeSection === "15thankyou"
                 ? "bg-blue-500"
                 : ""
-            }`}
+              }`}
             onClick={() => scrollToSection("12part3")}
           >
             <FaBuildingUser className="mr-2 text-[2rem]" /> About Us
@@ -242,65 +238,90 @@ function Header({ activeSection, setActiveSection }) {
       <div className="hidden md:block w-68"></div>
       {/* Mobile menu */}
       <div
-        className={`absolute z-50 md:hidden top-16 left-0 w-full bg-blue-700 flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${
-          isMenuOpen
+        className={`absolute z-50 md:hidden top-16 left-0 w-full bg-blue-700 flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${isMenuOpen
             ? "opacity-90 pointer-events-auto translate-y-0"
             : "opacity-0 pointer-events-none -translate-y-5"
-        }`}
+          }`}
         style={{ transition: "transform 0.3s ease, opacity 0.3s ease" }}
       >
+         <li
+            className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "01home" || activeSection === "02abouteus"
+                ? "bg-blue-500"
+                : ""
+              }`}
+            onClick={() => handleMobileClick("01home")}
+          >
+            <IoHome className="mr-1 text-[2rem]" /> Home
+          </li>
         <li
-          className="p-3 hover:bg-blue-500 cursor-pointer transition-all"
-          onClick={() => handleMobileClick("03part1")}
-        >
-          PHẦN I
+         className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "03part1" ||
+          activeSection === "04product1" ||
+          activeSection === "05product2" ||
+          activeSection === "06product3"
+          ? "bg-blue-500"
+          : ""
+        }`}
+      onClick={() => scrollToSection("03part1")}
+    >
+      <AiOutlineGlobal className="mr-1 text-[2rem]" /> Web/App
         </li>
         <li
-          className="p-3 hover:bg-blue-500 cursor-pointer transition-all"
+       className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "07part2" ||
+        activeSection === "08product4" ||
+        activeSection === "09product5" ||
+        activeSection === "10product6" ||
+        activeSection === "11product7"
+        ? "bg-blue-500"
+        : ""
+      }`}
           onClick={() => handleMobileClick("07part2")}
         >
-          PHẦN II
+          <IoLogoGameControllerA className="mr-1 text-[2rem]" /> Game
         </li>
         <li
-          className="p-3 hover:bg-blue-500 cursor-pointer transition-all"
+          className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "12part3" ||
+            activeSection === "13usservice" ||
+            activeSection === "14employee" ||
+            activeSection === "15thankyou"
+            ? "bg-blue-500"
+            : ""
+          }`}
           onClick={() => handleMobileClick("12part3")}
-        >
-          PHẦN III
+        > <FaBuildingUser className="mr-2 text-[2rem]" /> About Us
         </li>
       </div>
 
       {/* Export section */}
       <div
-        className="p-3 cursor-pointer print-hidden flex items-center relative hover:bg-blue-500"
+        className="p-3 cursor-pointer w-[7rem] print-hidden flex items-center relative hover:bg-blue-500"
         onMouseEnter={handleExportHover}
         onMouseLeave={handleExportLeave}
       >
         {/* Hiển thị icon loading nếu đang xuất */}
         {isExporting ? (
-          <AiOutlineLoading3Quarters className="text-white text-3xl animate-spin" />
+          <AiOutlineLoading3Quarters className="text-white text-3xl w-[50rem] animate-spin" />
         ) : (
-          <>
+          <div className="w-[50rem] flex">
             Export
-            <RiLogoutBoxRFill className="text-white text-3xl" />
-          </>
+            <RiLogoutBoxRFill className="text-white text-3xl " />
+          </div>
         )}
-        
+
         {/* Export menu */}
         <div
-          className={`absolute z-50 top-15 -right-5 w-[7rem] bg-blue-700 flex flex-col justify-center gap-1 text-[0.9rem] transform transition-all duration-300 ${
-            isExportMenu
+          className={`absolute z-50 top-15 left-0 w-[7rem] bg-blue-700 flex flex-col justify-center gap-1 text-[0.9rem] transform transition-all duration-300 ${isExportMenu
               ? "opacity-90 pointer-events-auto translate-y-0"
               : "opacity-0 pointer-events-none -translate-y-5"
-          }`}
+            }`}
         >
           <li
-            className="p-1 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
+            className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
             onClick={handleExportToImage}
           >
             ToImage <LuImageUp className="text-2xl ml-2" />
           </li>
           <li
-            className="p-1 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
+            className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
             onClick={exportToPDF}
           >
             ToPDF <PiFilePdfDuotone className="text-[1.8rem] ml-2" />
