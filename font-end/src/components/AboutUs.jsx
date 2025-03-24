@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const AbouteUs = () => {
+const AboutUs = () => {
     const [company, setCompany] = useState(null);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const AbouteUs = () => {
 
 
     return (
-        <div id="abouteus" className='flex flex-col w-full h-full select-none overflow-hidden'>
+        <div id="aboutus" className='flex flex-col w-full h-full select-none overflow-hidden'>
             <div className='flex flex-col w-full md:mt-15 md:flex-row md:justify-center md:items-center md:h-full'>
                 <div className="flex relative justify-center md:justify-start md:items-center md:w-2/5">
                     <div className="hidden md:absolute md:block  md:-top-30 md:left-0 md:bg-blue-600 md:w-50 md:h-50 lg:w-80 lg:h-80"></div>
@@ -55,4 +55,4 @@ const AbouteUs = () => {
     )
 }
 
-export default React.memo(AbouteUs);
+export default React.memo(AboutUs);

@@ -16,7 +16,7 @@ const data = JSON.parse(localStorage.getItem("data"));
     }, []);
 
     return (
-        <div id="15thankyou" className="max-w-screen h-screen flex flex-col items-center select-none">
+        <div id="15thank-you" className="max-w-screen h-screen flex flex-col items-center select-none">
             <div className="max-w-screen h-[25vh]"></div>
             <div className="flex flex-col justify-center items-center w-full h-[40vh] overflow-hidden">
                 <div className="flex space-x-4 mb-4">

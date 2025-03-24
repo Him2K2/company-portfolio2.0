@@ -5,7 +5,7 @@ import PageWrapper from "./components/PageWrapper";
 import Header from "./components/Header";
 
 const Home = lazy(() => import("./components/Home"));
-const AboutUs = lazy(() => import("./components/AbouteUs"));
+const AboutUs = lazy(() => import("./components/AboutUs"));
 const ProductIntroduction1 = lazy(() => import("./components/ProductIntroduction1"));
 const Product1 = lazy(() => import("./components/Product1"));
 const ProductIntroduction2 = lazy(() => import("./components/ProductIntroduction2"));
@@ -141,7 +141,7 @@ const App = () => {
         {pages.map((page, index) => {
           const sectionIds = [
             "01home",
-            "02abouteus",
+            "02about-us",
             "03part1",
             "04product1",
             "05product2",
@@ -151,9 +151,9 @@ const App = () => {
             "09product5",
             "10product6",
             "12part3",
-            "13usservice",
+            "13our-service",
             "14employees",
-            "15thankyou",
+            "15thank-you",
           ];
           return (
             <PageWrapper

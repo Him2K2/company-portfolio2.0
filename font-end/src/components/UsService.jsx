@@ -20,7 +20,7 @@ function Usservice({ companyId }) {
     }
   }, [companyId]);
   return (
-    <div id="13usservice" className="w-full min-h-screen flex flex-col select-none">
+    <div id="13our-service" className="w-full min-h-screen flex flex-col select-none">
       <div className="flex-1 flex flex-col items-center justify-center">
         <div className="w-full h-[25vh] flex justify-center items-center text-2xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-blue-900 text-transparent bg-clip-text font-sans">
           DỊCH VỤ CỦA CHÚNG TÔI
@@ -32,16 +32,14 @@ function Usservice({ companyId }) {
               <div
                 key={item.id}
                 className={`flex flex-col items-center p-4 w-60 h-60 ${index % 2 === 0 ?
-                  'md:flex-col-reverse 2xl:border-black 2xl:border-b-3   2xl:rounded-b-[7rem] 2xl:pb-5 2xl:mt-27 ' :
-                  '2xl:border-black 2xl:border-t-3 2xl:rounded-t-[5rem] 2xl:pt-5 2xl:mb-27'}`}
+                  'md:flex-col-reverse 2xl:border-black 2xl:border-b-3 2xl:pb-9 2xl:border-r-3 ' :
+                  '2xl:border-black 2xl:border-t-3  2xl:pt-9 2xl:border-r-3'}`}
               >
 
                 <div className="w-30 h-30 bg-blue-500 rounded-full flex justify-center items-center">
                   <FontAwesomeIcon icon={icons[index]} size="2x" color="#fff" />
                 </div>
-                <div className="absolute hidden 2xl:block  w-[0.1rem] h-45 top-25 ml-60 bg-black "></div>
-
-
+      
                 <div className="mt-4 text-gray-800 font-sans text-center">{item?.service}</div>
 
               </div>
