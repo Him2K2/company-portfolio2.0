@@ -173,36 +173,97 @@ function Header({ activeSection, setActiveSection }) {
   }, []);
 
   return (
-    <div className="w-screen flex h-15 bg-blue-700 p-5 text-white fixed justify-between items-center z-50 mb-auto md:h-15 lg:w-[80vw] select-none print-hidden">
-      <a
-        onClick={() => scrollToSection("01home")}
-        className="bg-blue-700 cursor-pointer hover:bg-blue-600 flex items-center justify-center z-10 w-20 h-15"
-      >
-        <img
-          src={company?.logo_img_url}
-          className="invert mix-blend-screen w-15 h-15"
-          alt="Company Logo"
-        />
-      </a>
+    <>
+      {isExporting && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black opacity-60 z-50"></div>
+      )}
+      <div className="w-screen flex h-15 bg-blue-700 p-5 text-white fixed justify-between items-center z-50 mb-auto md:h-15 lg:w-[80vw] select-none print-hidden">
+        <a
+          onClick={() => scrollToSection("01home")}
+          className="bg-blue-700 cursor-pointer hover:bg-blue-600 flex items-center justify-center z-10 w-20 h-15"
+        >
+          <img
+            src={company?.logo_img_url}
+            className="invert mix-blend-screen w-15 h-15"
+            alt="Company Logo"
+          />
+        </a>
 
-      <div>
-        <ul className="hidden md:flex items-center gap-5">
-          <li
-            className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "01home" || activeSection === "02abouteus"
+        <div>
+          <ul className="hidden md:flex items-center gap-5">
+            <li
+              className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "01home" || activeSection === "02abouteus"
                 ? "bg-blue-500"
                 : ""
-              }`}
-            onClick={() => scrollToSection("01home")}
-          >
-            <IoHome className="mr-1 text-[2rem]" /> Home
-          </li>
-          <li
-            className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "03part1" ||
+                }`}
+              onClick={() => scrollToSection("01home")}
+            >
+              <IoHome className="mr-1 text-[2rem]" /> Home
+            </li>
+            <li
+              className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "03part1" ||
                 activeSection === "04product1" ||
                 activeSection === "05product2" ||
                 activeSection === "06product3"
                 ? "bg-blue-500"
                 : ""
+                }`}
+              onClick={() => scrollToSection("03part1")}
+            >
+              <AiOutlineGlobal className="mr-1 text-[2rem]" /> Web/App
+            </li>
+            <li
+              className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "07part2" ||
+                activeSection === "08product4" ||
+                activeSection === "09product5" ||
+                activeSection === "10product6" ||
+                activeSection === "11product7"
+                ? "bg-blue-500"
+                : ""
+                }`}
+              onClick={() => scrollToSection("07part2")}
+            >
+              <IoLogoGameControllerA className="mr-1 text-[2rem]" /> Game
+            </li>
+            <li
+              className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "12part3" ||
+                activeSection === "13usservice" ||
+                activeSection === "14employee" ||
+                activeSection === "15thankyou"
+                ? "bg-blue-500"
+                : ""
+                }`}
+              onClick={() => scrollToSection("12part3")}
+            >
+              <FaBuildingUser className="mr-2 text-[2rem]" /> About Us
+            </li>
+          </ul>
+        </div>
+        <div className="hidden md:block w-68"></div>
+        {/* Mobile menu */}
+        <div
+          className={`absolute z-50 md:hidden top-16 left-0 w-full bg-blue-700 flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${isMenuOpen
+            ? "opacity-90 pointer-events-auto translate-y-0"
+            : "opacity-0 pointer-events-none -translate-y-5"
+            }`}
+          style={{ transition: "transform 0.3s ease, opacity 0.3s ease" }}
+        >
+          <li
+            className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "01home" || activeSection === "02abouteus"
+              ? "bg-blue-500"
+              : ""
+              }`}
+            onClick={() => handleMobileClick("01home")}
+          >
+            <IoHome className="mr-1 text-[2rem]" /> Home
+          </li>
+          <li
+            className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "03part1" ||
+              activeSection === "04product1" ||
+              activeSection === "05product2" ||
+              activeSection === "06product3"
+              ? "bg-blue-500"
+              : ""
               }`}
             onClick={() => scrollToSection("03part1")}
           >
@@ -210,130 +271,86 @@ function Header({ activeSection, setActiveSection }) {
           </li>
           <li
             className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "07part2" ||
-                activeSection === "08product4" ||
-                activeSection === "09product5" ||
-                activeSection === "10product6" ||
-                activeSection === "11product7"
-                ? "bg-blue-500"
-                : ""
+              activeSection === "08product4" ||
+              activeSection === "09product5" ||
+              activeSection === "10product6" ||
+              activeSection === "11product7"
+              ? "bg-blue-500"
+              : ""
               }`}
-            onClick={() => scrollToSection("07part2")}
+            onClick={() => handleMobileClick("07part2")}
           >
             <IoLogoGameControllerA className="mr-1 text-[2rem]" /> Game
           </li>
           <li
             className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "12part3" ||
-                activeSection === "13usservice" ||
-                activeSection === "14employee" ||
-                activeSection === "15thankyou"
-                ? "bg-blue-500"
-                : ""
+              activeSection === "13usservice" ||
+              activeSection === "14employee" ||
+              activeSection === "15thankyou"
+              ? "bg-blue-500"
+              : ""
               }`}
-            onClick={() => scrollToSection("12part3")}
-          >
-            <FaBuildingUser className="mr-2 text-[2rem]" /> About Us
+            onClick={() => handleMobileClick("12part3")}
+          > <FaBuildingUser className="mr-2 text-[2rem]" /> About Us
           </li>
-        </ul>
-      </div>
-      <div className="hidden md:block w-68"></div>
-      {/* Mobile menu */}
-      <div
-        className={`absolute z-50 md:hidden top-16 left-0 w-full bg-blue-700 flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${isMenuOpen
-            ? "opacity-90 pointer-events-auto translate-y-0"
-            : "opacity-0 pointer-events-none -translate-y-5"
-          }`}
-        style={{ transition: "transform 0.3s ease, opacity 0.3s ease" }}
-      >
-         <li
-            className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "01home" || activeSection === "02abouteus"
-                ? "bg-blue-500"
-                : ""
-              }`}
-            onClick={() => handleMobileClick("01home")}
-          >
-            <IoHome className="mr-1 text-[2rem]" /> Home
-          </li>
-        <li
-         className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "03part1" ||
-          activeSection === "04product1" ||
-          activeSection === "05product2" ||
-          activeSection === "06product3"
-          ? "bg-blue-500"
-          : ""
-        }`}
-      onClick={() => scrollToSection("03part1")}
-    >
-      <AiOutlineGlobal className="mr-1 text-[2rem]" /> Web/App
-        </li>
-        <li
-       className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "07part2" ||
-        activeSection === "08product4" ||
-        activeSection === "09product5" ||
-        activeSection === "10product6" ||
-        activeSection === "11product7"
-        ? "bg-blue-500"
-        : ""
-      }`}
-          onClick={() => handleMobileClick("07part2")}
-        >
-          <IoLogoGameControllerA className="mr-1 text-[2rem]" /> Game
-        </li>
-        <li
-          className={`p-3 hover:bg-blue-500  cursor-pointer transition-all flex items-center ${activeSection === "12part3" ||
-            activeSection === "13usservice" ||
-            activeSection === "14employee" ||
-            activeSection === "15thankyou"
-            ? "bg-blue-500"
-            : ""
-          }`}
-          onClick={() => handleMobileClick("12part3")}
-        > <FaBuildingUser className="mr-2 text-[2rem]" /> About Us
-        </li>
-      </div>
-
-      {/* Export section */}
-      <div
-        className="p-3 cursor-pointer w-[7rem] print-hidden flex items-center relative hover:bg-blue-500"
-        onMouseEnter={handleExportHover}
-        onMouseLeave={handleExportLeave}
-      >
-        {/* Hiển thị icon loading nếu đang xuất */}
-        {isExporting ? (
-          <AiOutlineLoading3Quarters className="text-white text-3xl w-[50rem] animate-spin" />
-        ) : (
-          <div className="w-[50rem] flex">
-            Export
-            <RiLogoutBoxRFill className="text-white text-3xl " />
-          </div>
-        )}
-
-        {/* Export menu */}
-        <div
-          className={`absolute z-50 top-15 left-0 w-[7rem] bg-blue-700 flex flex-col justify-center gap-1 text-[0.9rem] transform transition-all duration-300 ${isExportMenu
-              ? "opacity-90 pointer-events-auto translate-y-0"
-              : "opacity-0 pointer-events-none -translate-y-5"
-            }`}
-        >
           <li
             className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
             onClick={handleExportToImage}
           >
-            ToImage <LuImageUp className="text-2xl ml-2" />
+            <LuImageUp className="text-2xl ml-2" /> ToImage 
           </li>
           <li
             className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
             onClick={exportToPDF}
           >
-            ToPDF <PiFilePdfDuotone className="text-[1.8rem] ml-2" />
+           <PiFilePdfDuotone className="text-[1.8rem] ml-2" /> ToPDF 
           </li>
         </div>
-      </div>
 
-      <TiThMenuOutline
-        className="text-white w-10 h-10 md:hidden cursor-pointer"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-      />
-    </div>
+        {/* Export section */}
+        <div
+          className="p-3 cursor-pointer w-[7rem] print-hidden flex items-center relative hover:bg-blue-500"
+          onMouseEnter={handleExportHover}
+          onMouseLeave={handleExportLeave}
+        >
+          {/* Hiển thị icon loading nếu đang xuất */}
+          {isExporting ? (
+            <AiOutlineLoading3Quarters className="text-white text-3xl w-[50rem] animate-spin" />
+          ) : (
+            <div className="md:flex w-[50rem] hidden">
+              Export
+              <RiLogoutBoxRFill className="text-white text-3xl " />
+            </div>
+          )}
+
+          {/* Export menu */}
+          <div
+            className={`hidden md:flex absolute z-50 top-15 left-0 w-[7rem] bg-blue-700  flex-col justify-center gap-1 text-[0.9rem] transform transition-all duration-300 ${isExportMenu
+              ? "opacity-100 pointer-events-auto translate-y-0"
+              : "opacity-0 pointer-events-none -translate-y-5"
+              }`}
+          >
+            <li
+              className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
+              onClick={handleExportToImage}
+            >
+              ToImage <LuImageUp className="text-2xl ml-2" />
+            </li>
+            <li
+              className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
+              onClick={exportToPDF}
+            >
+              ToPDF <PiFilePdfDuotone className="text-[1.8rem] ml-2" />
+            </li>
+          </div>
+        </div>
+
+        <TiThMenuOutline
+          className="text-white w-10 h-10 md:hidden cursor-pointer"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        />
+      </div>
+    </>
   );
 }
 

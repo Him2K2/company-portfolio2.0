@@ -47,7 +47,7 @@ const Product2 = ({
                     <div className="flex w-[91%] items-center m-5 md:m-5 md:ml-20">
                         
                         <div><AiFillCheckCircle className=" text-3xl mr-5 h-full text-blue-600"/></div>
-                        <div className="text-xl p-1">{productData?.description}</div>
+                        <div className="text-xl p-5">{productData?.description}</div>
                     </div>
                     <div className="hidden md:block md:mr-auto">
                     <button className="px-8 py-2 bg-blue-500 text-white rounded-lg mx-10">Frontend</button>

@@ -34,7 +34,7 @@ const Product4 = ({
           <div className="text-blue-600 text-4xl font-bold mx-7 md:text-2xl md:mt-auto md:relative md:top-1.5">{productData?.name}</div>
           <img src={imageData[3]} className="w-20 h-5 mt-auto md:w-18 md:h-4"></img>
         </div>
-        <div className="mt-5 p-2">{productData?.description}</div>
+        <div className="mt-5 p-5 m-1 ">{productData?.description}</div>
         <div className="flex m-5 items-center">
           <button className="bg-blue-600 hover:bg-blue-950 selection:cursor-pointer select-all px-7 py-1 text-white text-2xl rounded-2xl mr-10 md:text-xl">Frontend</button>
           <div className="ml-10 font-medium">{productData?.manufacture_year}</div>
