@@ -1,7 +1,10 @@
 import React, { useRef, useEffect, memo, useCallback } from "react";
+import { useTranslation } from "react-i18next"; 
 
 const PageWrapper = memo(({ pageNumber, children, id, sectionId, setActiveSection, isExportingPDF }) => {
   const ref = useRef(null);
+
+   const { t } = useTranslation();
 
   const handleIntersection = useCallback(
     (entries) => {
@@ -45,7 +48,7 @@ const PageWrapper = memo(({ pageNumber, children, id, sectionId, setActiveSectio
       {pageNumber > 0 && (
         <div className="w-screen h-8 bg-blue-600 relative z-10 flex justify-center lg:max-w-[80vw] mt-auto">
           <button className="px-10 py-1 text-white bg-stone-800 absolute -top-3 left-1/3 md:absolute md:-top-3 md:left-10">
-            Page No: {pageNumber}
+          {t("page")} {pageNumber}
           </button>
         </div>
       )}

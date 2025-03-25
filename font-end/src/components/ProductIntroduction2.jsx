@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { useTranslation } from "react-i18next"; 
 
 
 const data = JSON.parse(localStorage.getItem("data"));
@@ -9,6 +9,7 @@ const ProductIntroduction2 = ({
     imgID = [],
 }) => {
     const [imageData, setImageData] = useState([]);
+    const {t} = useTranslation();
 
     useEffect(() => {
         const product = products.find((item) => item.id === productId);
@@ -31,8 +32,8 @@ const ProductIntroduction2 = ({
                         <img src={imageData[0]} className="absolute w-full h-full object-cover"></img>
                     </div>
                     <div className=" bg-blue-800 text-white text-3xl  h-full w-full flex flex-col items-center min-w-full justify-center p-4 col-span-2 ">
-                        <h1>Phần II</h1>
-                        <p className="font-medium text-4xl">DỰ ÁN GAME</p>
+                        <h1>{t("part2")}</h1>
+                        <p className="font-medium text-4xl">{t("pjgame")}</p>
                     </div>
                     <div className=" relative bg-blue-500 text-white flex items-center justify-center md:h-full md:w-full p-4">
                         <img src={imageData[3]} className="absolute w-full h-full object-cover"></img>

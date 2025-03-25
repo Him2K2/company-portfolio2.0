@@ -4,6 +4,7 @@ import { RiLoader4Line } from "react-icons/ri";
 import PageWrapper from "./components/PageWrapper";
 import Header from "./components/Header";
 
+
 const Home = lazy(() => import("./components/Home"));
 const AboutUs = lazy(() => import("./components/AboutUs"));
 const ProductIntroduction1 = lazy(() => import("./components/ProductIntroduction1"));

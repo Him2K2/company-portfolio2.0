@@ -1,4 +1,8 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { useTranslation } from "react-i18next"; 
+
+
+//icon
 import { TiThMenuOutline } from "react-icons/ti";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { AiOutlineGlobal, AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -32,6 +36,8 @@ function Header({ activeSection, setActiveSection }) {
   const [isExportMenu, setIsExportMenu] = useState(false);
   const [exportTimeout, setExportTimeout] = useState(null);
   const [isExporting, setIsExporting] = useState(false);
+
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("data"));
@@ -153,12 +159,19 @@ function Header({ activeSection, setActiveSection }) {
     }
   }, []);
 
+  // Hàm chuyển ngôn ngữ
+  const handleChangeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+  };
+
   return (
     <>
-      {isExporting && (
+       {isExporting && (
         <div className="fixed top-0 left-0 w-full h-full bg-black opacity-60 z-50"></div>
       )}
       <div className="w-screen flex h-15 bg-blue-700 p-5 text-white fixed justify-between items-center z-50 mb-auto md:h-15 lg:w-[80vw] select-none print-hidden">
+        
+        {/* Logo */}
         <a
           onClick={() => scrollToSection("01home")}
           className="bg-blue-700 cursor-pointer hover:bg-blue-600 flex items-center justify-center z-10 w-20 h-15"
@@ -170,15 +183,16 @@ function Header({ activeSection, setActiveSection }) {
           />
         </a>
 
+        {/* Menu Desktop */}
         <div>
-          <ul className="hidden md:flex items-center gap-5">
+          <ul className="hidden md:flex items-center gap-1">
             <li
-              className={`p-3 h-15  hover:bg-blue-500 cursor-pointer transition-all flex items-center ${
+              className={`p-3 h-15 hover:bg-blue-500 cursor-pointer transition-all flex items-center ${
                 activeSection === "01home" || activeSection === "02about-us" ? "bg-blue-500" : ""
               }`}
               onClick={() => scrollToSection("01home")}
             >
-              <IoHome className="mr-1 text-[2rem]" /> Home
+              <IoHome className="mr-1 text-[2rem]" /> {t("home")}
             </li>
             <li
               className={`p-3 h-15 hover:bg-blue-500 cursor-pointer transition-all flex items-center ${
@@ -191,7 +205,7 @@ function Header({ activeSection, setActiveSection }) {
               }`}
               onClick={() => scrollToSection("03part1")}
             >
-              <AiOutlineGlobal className="mr-1 text-[2rem]" /> Web/App
+              <AiOutlineGlobal className="mr-1 text-[2rem]" /> {t("web")}
             </li>
             <li
               className={`p-3 h-15 hover:bg-blue-500 cursor-pointer transition-all flex items-center ${
@@ -205,7 +219,7 @@ function Header({ activeSection, setActiveSection }) {
               }`}
               onClick={() => scrollToSection("07part2")}
             >
-              <IoLogoGameControllerA className="mr-1 text-[2rem]" /> Game
+              <IoLogoGameControllerA className="mr-1 text-[2rem]" /> {t("game")}
             </li>
             <li
               className={`p-3 h-15 hover:bg-blue-500 cursor-pointer transition-all flex items-center ${
@@ -218,11 +232,13 @@ function Header({ activeSection, setActiveSection }) {
               }`}
               onClick={() => scrollToSection("12part3")}
             >
-              <FaBuildingUser className="mr-2 text-[2rem]" /> About Us
+              <FaBuildingUser className="mr-2 text-[2rem]" /> {t("about")}
             </li>
           </ul>
         </div>
-        <div className="hidden md:block w-68"></div>
+
+        
+
         {/* Mobile menu */}
         <div
           className={`absolute z-50 md:hidden top-16 left-0 w-full bg-blue-700 flex flex-col items-center gap-6 font-semibold text-lg transform transition-transform ${
@@ -238,7 +254,7 @@ function Header({ activeSection, setActiveSection }) {
             }`}
             onClick={() => handleMobileClick("01home")}
           >
-            <IoHome className="mr-1 text-[2rem]" /> Home
+            <IoHome className="mr-1 text-[2rem]" /> {t("home")}
           </li>
           <li
             className={`p-3 hover:bg-blue-500 cursor-pointer transition-all flex items-center ${
@@ -251,7 +267,7 @@ function Header({ activeSection, setActiveSection }) {
             }`}
             onClick={() => scrollToSection("03part1")}
           >
-            <AiOutlineGlobal className="mr-1 text-[2rem]" /> Web/App
+            <AiOutlineGlobal className="mr-1 text-[2rem]" /> {t("web")}
           </li>
           <li
             className={`p-3 hover:bg-blue-500 cursor-pointer transition-all flex items-center ${
@@ -265,7 +281,7 @@ function Header({ activeSection, setActiveSection }) {
             }`}
             onClick={() => handleMobileClick("07part2")}
           >
-            <IoLogoGameControllerA className="mr-1 text-[2rem]" /> Game
+            <IoLogoGameControllerA className="mr-1 text-[2rem]" /> {t("game")}
           </li>
           <li
             className={`p-3 hover:bg-blue-500 cursor-pointer transition-all flex items-center ${
@@ -278,56 +294,94 @@ function Header({ activeSection, setActiveSection }) {
             }`}
             onClick={() => handleMobileClick("12part3")}
           >
-            <FaBuildingUser className="mr-2 text-[2rem]" /> About Us
+            <FaBuildingUser className="mr-2 text-[2rem]" /> {t("about")}
           </li>
+
+         
+
           <li
             className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
             onClick={handleExportToImage}
           >
-            To Image <LuImageUp className="text-[2rem] ml-2" />
+            <LuImageUp className="text-[2rem] ml-2" />{t("toimg")} 
           </li>
           <li
             className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
             onClick={exportToPDF}
           >
-            To PDF <PiFilePdfDuotone className="text-[2.2rem] ml-2" />
+             <PiFilePdfDuotone className="text-[2.2rem] ml-2" />{t("topdf")}
           </li>
+           {/* ADD LANGUAGE SWITCH (Mobile) */}
+           <div className="flex space-x-2">
+            <button 
+              className="bg-white text-blue-700 px-2 py-1 rounded"
+              onClick={() => handleChangeLanguage('en')}
+            >
+              EN
+            </button>
+            <button 
+              className="bg-white text-blue-700 px-2 py-1 rounded"
+              onClick={() => handleChangeLanguage('vi')}
+            >
+              VI
+            </button>
+          </div>
         </div>
 
-        {/* Export section */}
-        <div
-          className="p-3 cursor-pointer w-[7rem] print-hidden flex items-center relative hover:bg-blue-500"
-          onMouseEnter={handleExportHover}
-          onMouseLeave={handleExportLeave}
-        >
-          {isExporting ? (
-            <AiOutlineLoading3Quarters className="text-white text-3xl animate-spin" />
-          ) : (
-            <div className="md:flex w-[50rem] hidden">
-              Export
-              <RiLogoutBoxRFill className="text-white text-3xl " />
-            </div>
-          )}
-
-          <div
-            className={`hidden md:flex absolute z-50 top-15 left-0 w-[7rem] bg-blue-700 flex-col justify-center gap-1 text-[0.9rem] transform transition-all duration-300 ${
-              isExportMenu
-                ? "opacity-100 pointer-events-auto translate-y-0"
-                : "opacity-0 pointer-events-none -translate-y-5"
-            }`}
+    
+        
+        <div className="space-x-2 flex">
+          {/* ADD LANGUAGE SWITCH (Desktop) */}
+        <div className="hidden md:flex items-center space-x-2 ">
+          <button 
+            className="bg-white text-blue-700 px-2 py-1 rounded cursor-pointer"
+            onClick={() => handleChangeLanguage('en')}
           >
-            <li
-              className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
-              onClick={handleExportToImage}
+            EN
+          </button>
+          <button 
+            className="bg-white text-blue-700 px-2 py-1 rounded cursor-pointer"
+            onClick={() => handleChangeLanguage('vi')}
+          >
+            VI
+          </button>
+        </div>
+            {/* Export section */}
+          <div
+            className="p-3 cursor-pointer w-[8rem] print-hidden flex items-center relative hover:bg-blue-500"
+            onMouseEnter={handleExportHover}
+            onMouseLeave={handleExportLeave}
+          >
+            {isExporting ? (
+              <AiOutlineLoading3Quarters className="text-white text-3xl animate-spin" />
+            ) : (
+              <div className="md:flex w-[50rem] hidden md:items-center">
+                 <RiLogoutBoxRFill className="text-white text-3xl " />
+                {t("export")}
+               
+              </div>
+            )}
+  
+            <div
+              className={`hidden md:flex absolute z-50 top-15 left-0 w-[8rem] bg-blue-700 flex-col justify-center gap-1 text-[0.9rem] transform transition-all duration-300 ${
+                isExportMenu
+                  ? "opacity-100 pointer-events-auto translate-y-0"
+                  : "opacity-0 pointer-events-none -translate-y-5"
+              }`}
             >
-              ToImage <LuImageUp className="text-2xl ml-2" />
-            </li>
-            <li
-              className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
-              onClick={exportToPDF}
-            >
-              ToPDF <PiFilePdfDuotone className="text-[1.8rem] ml-2" />
-            </li>
+              <li
+                className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
+                onClick={handleExportToImage}
+              >
+                <LuImageUp className="text-2xl mr-2" />{t("toimg")} 
+              </li>
+              <li
+                className="p-3 hover:bg-blue-500 cursor-pointer transition-all flex justify-start items-center"
+                onClick={exportToPDF}
+              >
+                <PiFilePdfDuotone className="text-[1.8rem] mr-2" /> {t("topdf")}
+              </li>
+            </div>
           </div>
         </div>
 

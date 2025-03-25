@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next"; 
+
 import { MdOutlineMailOutline } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
 import { FaLink } from "react-icons/fa";
@@ -7,6 +9,7 @@ const data = JSON.parse(localStorage.getItem("data"));
 
  function Thankyou() {
     const [company, setCompany] = useState(null);
+    const {t} = useTranslation();
 
     useEffect(() => {
         const company = data?.company;
@@ -27,7 +30,7 @@ const data = JSON.parse(localStorage.getItem("data"));
                 <div className="flex relative w-full justify-center">
                     <div className="w-60 h-60 bg-gray-200  absolute bottom-10 right-20 2xl:absoltule 2xl:bottom-20 2xl:right-10 hidden md:block"></div>
                     <div className="w-[60vw] h-[30vh] bg-blue-600 text-white flex justify-center items-center text-2xl md:text-5xl lg:text-8xl font-bold relative z-10 ">
-                        THANK YOU
+                        {t("thankyou")}
                      </div>
                     <div className="w-60 h-60 bg-gray-200 absolute bottom-10 left-20 2xl:absoltule 2xl:bottom-20 2xl:right-10 hidden md:block"></div>
                 </div>
