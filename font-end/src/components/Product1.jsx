@@ -20,7 +20,7 @@ const Product1 = ({ productId, imgID = [], idPage }) => {
   return (
     <div
       id={idPage}
-      className="w-full min-h-screen flex flex-col js md:h-screen md:max-h-screen md:overflow-hidden"
+      className="w-full min-h-screen flex flex-col justify-center items-center md:h-screen md:max-h-screen md:overflow-hidden"
     >
       <div className="flex flex-col justify-center items-center flex-grow w-full h-[calc(100vh-2rem)] md:flex-row md:justify-start md:items-center md:mt-20">
         <div className="md:w-40 md:h-40 bg-blue-700 z-40 relative -top-85 -left-10"></div>
@@ -28,7 +28,7 @@ const Product1 = ({ productId, imgID = [], idPage }) => {
           <div className="font-bold text-blue-600 text-4xl md:text-5xl mb-4 md:mb-10 select-none">
             {productData?.name}
           </div>
-          <div className="flex m-5 ml-0 md:flex md:items-center">
+          <div className="flex m-5 ml-0 md:flex md:items-center justify-center">
             <div className="flex w-20 h-5 mt-1 md:m-10">
               <div className="bg-blue-950 w-5 h-5 ml-1"></div>
               <div className="bg-blue-500 w-5 h-5 ml-1"></div>

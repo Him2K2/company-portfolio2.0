@@ -16,8 +16,4 @@ export default function Data() {
 
     fetchData(); 
   }, []); 
-
-  return(
-    <div></div>
-  );
 }

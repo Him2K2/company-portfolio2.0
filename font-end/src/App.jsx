@@ -23,6 +23,7 @@ const App = () => {
   const [isExportingPDF, setIsExportingPDF] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
+  
   const scrollToSection = useCallback((id, isManualScroll = false) => {
     const element = document.getElementById(id);
     if (element) {
@@ -45,7 +46,7 @@ const App = () => {
           scrollToSection(targetSection, true);
           setIsInitialLoad(false);
         } else {
-          setTimeout(attemptScroll, 100);
+          setTimeout(attemptScroll, 200);
         }
       };
 
