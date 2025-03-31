@@ -161,7 +161,7 @@ function Header({ activeSection, scrollToSection,}) {
       <div className="w-screen flex h-15 bg-blue-700 p-5 text-white fixed justify-between items-center z-50 mb-auto md:h-15 lg:w-[80vw] select-none print-hidden">
         {/* Logo */}
         <a
-          onClick={() => scrollToSection("01home")}
+            onClick={() => scrollToSection("01home", true)}
           className="bg-blue-700 cursor-pointer hover:bg-blue-600 flex items-center justify-center z-10 w-20 h-15"
         >
           <img
@@ -170,7 +170,6 @@ function Header({ activeSection, scrollToSection,}) {
             alt="Company Logo"
           />
         </a>
-
         {/* Menu Desktop */}
         <div>
           <ul className="hidden md:flex items-center gap-1">
@@ -193,7 +192,7 @@ function Header({ activeSection, scrollToSection,}) {
                   ? "bg-blue-500"
                   : ""
               }`}
-              onClick={() => scrollToSection("03part1")}
+              onClick={() => scrollToSection("03part1", true)}
             >
               <AiOutlineGlobal className="mr-1 text-[2rem]" /> {t("web")}
             </li>
@@ -207,7 +206,7 @@ function Header({ activeSection, scrollToSection,}) {
                   ? "bg-blue-500"
                   : ""
               }`}
-              onClick={() => scrollToSection("07part2")}
+              onClick={() => scrollToSection("07part2", true)}
             >
               <IoLogoGameControllerA className="mr-1 text-[2rem]" /> {t("game")}
             </li>
@@ -220,7 +219,7 @@ function Header({ activeSection, scrollToSection,}) {
                   ? "bg-blue-500"
                   : ""
               }`}
-              onClick={() => scrollToSection("12part3")}
+              onClick={() => scrollToSection("12part3", true)}
             >
               <FaBuildingUser className="mr-2 text-[2rem]" /> {t("about")}
             </li>
@@ -242,7 +241,7 @@ function Header({ activeSection, scrollToSection,}) {
                 ? "bg-blue-500"
                 : ""
             }`}
-            onClick={() => handleMobileClick("01home")}
+            onClick={() => handleMobileClick("01home", true)}
           >
             <IoHome className="mr-1 text-[2rem]" /> {t("home")}
           </li>
@@ -255,7 +254,7 @@ function Header({ activeSection, scrollToSection,}) {
                 ? "bg-blue-500"
                 : ""
             }`}
-            onClick={() => scrollToSection("03part1")}
+            onClick={() => scrollToSection("03part1", true)}
           >
             <AiOutlineGlobal className="mr-1 text-[2rem]" /> {t("web")}
           </li>
@@ -269,7 +268,7 @@ function Header({ activeSection, scrollToSection,}) {
                 ? "bg-blue-500"
                 : ""
             }`}
-            onClick={() => handleMobileClick("07part2")}
+            onClick={() => handleMobileClick("07part2", true)}
           >
             <IoLogoGameControllerA className="mr-1 text-[2rem]" /> {t("game")}
           </li>

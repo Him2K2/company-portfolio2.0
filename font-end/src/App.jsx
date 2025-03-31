@@ -28,15 +28,17 @@ const App = () => {
 
   // Hàm điều hướng khi click vào menu: cuộn ngay và cập nhật activeSection
   const scrollToSection = useCallback((id, isManualScroll = false) => {
-    const element = document.getElementById(id);
-    if (element) {
-      if (!isManualScroll) {
-        window.history.replaceState({}, "", `#${id}`);
-      }
-      element.scrollIntoView({ behavior: "smooth" });
-      setActiveSection(id);
+  const element = document.getElementById(id);
+  if (element) {
+    // Nếu là cuộn tự nhiên (không phải do header), cập nhật URL ngay
+    if (!isManualScroll) {
+      window.history.replaceState({}, "", `#${id}`);
     }
-  }, []);
+    element.scrollIntoView({ behavior: "smooth" });
+    setActiveSection(id);
+  }
+}, []);
+
 
   // Mỗi khi candidateSection thay đổi, reset hasSnapped để cho phép cuộn lại sau inactivity
   useEffect(() => {
@@ -58,7 +60,7 @@ const App = () => {
           window.history.replaceState({}, "", `#${candidateSection}`);
           setHasSnapped(true);
         }
-      }, 1000);
+      }, 800);
     };
 
     window.addEventListener("scroll", resetTimer);
