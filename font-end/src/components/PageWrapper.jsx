@@ -25,7 +25,7 @@ const PageWrapper = memo(({ pageNumber, children, id, sectionId, setActiveSectio
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.7
+      threshold: 0.5 
     });
 
     if (ref.current && !isExportingPDF) {
