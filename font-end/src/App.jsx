@@ -4,7 +4,6 @@ import { RiLoader4Line } from "react-icons/ri";
 import PageWrapper from "./components/PageWrapper";
 import Header from "./components/Header";
 
-
 const Home = lazy(() => import("./components/Home"));
 const AboutUs = lazy(() => import("./components/AboutUs"));
 const ProductIntroduction1 = lazy(() => import("./components/ProductIntroduction1"));
@@ -20,10 +19,14 @@ const ThankYou = lazy(() => import("./components/ThankYou"));
 const App = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState("01home");
+  // candidateSection chứa id của section nhận từ PageWrapper khi scroll
+  const [candidateSection, setCandidateSection] = useState(null);
   const [isExportingPDF, setIsExportingPDF] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  // state này dùng để đảm bảo rằng sau inactivity ta chỉ cuộn về section 1 lần
+  const [hasSnapped, setHasSnapped] = useState(false);
 
-  
+  // Hàm điều hướng khi click vào menu: cuộn ngay và cập nhật activeSection
   const scrollToSection = useCallback((id, isManualScroll = false) => {
     const element = document.getElementById(id);
     if (element) {
@@ -34,6 +37,46 @@ const App = () => {
       setActiveSection(id);
     }
   }, []);
+
+  // Mỗi khi candidateSection thay đổi, reset hasSnapped để cho phép cuộn lại sau inactivity
+  useEffect(() => {
+    setHasSnapped(false);
+  }, [candidateSection]);
+
+  // Hiệu ứng bắt "inactivity" trên toàn trang: nếu không có sự kiện nào xảy ra trong 0.8s,
+  // thì tự động cuộn đến candidateSection (nếu chưa thực hiện cuộn) và đánh dấu đã snap.
+  useEffect(() => {
+    let inactivityTimer;
+    const resetTimer = () => {
+      if (inactivityTimer) clearTimeout(inactivityTimer);
+      // Mỗi lần có hoạt động, reset lại hasSnapped để cho phép snap lại khi inactivity xảy ra
+      setHasSnapped(false);
+      inactivityTimer = setTimeout(() => {
+        if (candidateSection && !hasSnapped) {
+          scrollToSection(candidateSection, true);
+          setActiveSection(candidateSection);
+          window.history.replaceState({}, "", `#${candidateSection}`);
+          setHasSnapped(true);
+        }
+      }, 1000);
+    };
+
+    window.addEventListener("scroll", resetTimer);
+    window.addEventListener("mousemove", resetTimer);
+    window.addEventListener("keydown", resetTimer);
+    window.addEventListener("touchstart", resetTimer);
+
+    // Khởi tạo timer ngay từ đầu
+    resetTimer();
+
+    return () => {
+      clearTimeout(inactivityTimer);
+      window.removeEventListener("scroll", resetTimer);
+      window.removeEventListener("mousemove", resetTimer);
+      window.removeEventListener("keydown", resetTimer);
+      window.removeEventListener("touchstart", resetTimer);
+    };
+  }, [candidateSection, hasSnapped, scrollToSection]);
 
   useEffect(() => {
     if (dataLoaded) {
@@ -46,7 +89,7 @@ const App = () => {
           scrollToSection(targetSection, true);
           setIsInitialLoad(false);
         } else {
-          setTimeout(attemptScroll, 200);
+          setTimeout(attemptScroll, 300);
         }
       };
 
@@ -95,8 +138,6 @@ const App = () => {
     fetchData();
   }, []);
 
-  // const homePage = <Home />;
-
   const pages = useMemo(
     () => [
       <Home idPage={"01home"} />,
@@ -125,52 +166,50 @@ const App = () => {
     );
   }
 
+  const sectionIds = [
+    "01home",
+    "02about-us",
+    "03part1",
+    "04product1",
+    "05product2",
+    "06product3",
+    "07part2",
+    "08product4",
+    "09product5",
+    "10product6",
+    "12part3",
+    "13our-service",
+    "14employees",
+    "15thank-you",
+  ];
+
   return (
     <div className="flex flex-col max-w-screen items-center print:block print:w-[210mm] print:mx-auto bg-black">
-      <Suspense fallback={<div className="flex items-center justify-center min-h-screen">
-        <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
-      </div>}>
+      <Suspense
+        fallback={
+          <div className="flex items-center justify-center min-h-screen">
+            <RiLoader4Line className="text-6xl text-blue-600 animate-spin" />
+          </div>
+        }
+      >
         <Header
           activeSection={activeSection}
           scrollToSection={scrollToSection}
           setIsExportingPDF={setIsExportingPDF}
           setActiveSection={setActiveSection}
         />
-        {/* <PageWrapper id="01home"  pageNumber="0" sectionId="01home" setActiveSection={setActiveSection} className="page-wrapper">
-          {homePage}
-        </PageWrapper> */}
-
-        {pages.map((page, index) => {
-          const sectionIds = [
-            "01home",
-            "02about-us",
-            "03part1",
-            "04product1",
-            "05product2",
-            "06product3",
-            "07part2",
-            "08product4",
-            "09product5",
-            "10product6",
-            "12part3",
-            "13our-service",
-            "14employees",
-            "15thank-you",
-          ];
-          return (
-            <PageWrapper
-              key={index}
-              pageNumber={index+1}
-              id={sectionIds[index]}
-              sectionId={sectionIds[index]}
-              setActiveSection={setActiveSection}
-              className="page-wrapper"
-              isExportingPDF={isExportingPDF}
-            >
-              {page}
-            </PageWrapper>
-          );
-        })}
+        {pages.map((page, index) => (
+          <PageWrapper
+            key={index}
+            pageNumber={index + 1}
+            id={sectionIds[index]}
+            sectionId={sectionIds[index]}
+            updateCandidateSection={setCandidateSection}
+            isExportingPDF={isExportingPDF}
+          >
+            {page}
+          </PageWrapper>
+        ))}
       </Suspense>
     </div>
   );
