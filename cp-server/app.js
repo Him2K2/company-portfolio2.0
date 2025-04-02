@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Cấu hình CORS
 const corsOptions = {
-  origin: 'http://192.168.233.:5173', 
+  origin: 'http://192.168.230:5173', 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };

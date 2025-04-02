@@ -60,7 +60,7 @@ const App = () => {
           window.history.replaceState({}, "", `#${candidateSection}`);
           setHasSnapped(true);
         }
-      }, 800);
+      }, 600);
     };
 
     window.addEventListener("scroll", resetTimer);
